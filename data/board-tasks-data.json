@@ -1,0 +1,47 @@
+{
+  "b1": {
+    "id": "b1",
+    "name": "My board",
+    "columns": [
+      {
+        "id": "c1",
+        "name": "TODO"
+      },
+      {
+        "id": "c2",
+        "name": "In progress"
+      },
+      {
+        "id": "c3",
+        "name": "Done"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "t1",
+        "name": "Make somebody laugh :)",
+        "columnId": "c1"
+      },
+      {
+        "id": "t2",
+        "name": "Dance funny dance!",
+        "columnId": "TODO"
+      },
+      {
+        "id": "t3",
+        "name": "Sing imaginary song",
+        "columnId": "TODO"
+      },
+      {
+        "id": "t4",
+        "name": "Work a little bit",
+        "columnId": "Done"
+      },
+      {
+        "id": "t5",
+        "name": "Make cat\"s eyes to get some food",
+        "columnId": "Done"
+      }
+    ]
+  }
+}
