@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body,
+html,
+#root {
+    height: 100%;
+    min-height: fit-content;
+    width: 100%;
+    font-family: "Montserrat", sans-serif;
+}
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 90%;
+    min-height: fit-content;
+    height: 100%;
+    margin: auto;
+    justify-content: flex-start;
+    background: linear-gradient(135deg, #cea4a4, transparent);
+    border-radius: 5px;
+}
+.board__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    padding: 10px 40px;
+}
+.board__edit-icon{
+    fill: #595959;
+    margin: 0 5px;
+}
+.board__edit-icon > svg{
+    cursor: pointer;
+    fill: #505050;
+}
+.board__edit-icon:hover > svg{
+    fill: black;
+}
+.board__name {
+    font-size: 1.4em;
+    font-weight: bold;
+    border-bottom: 1px solid transparent;
+}
+[contenteditable]:active,
+[contenteditable]:focus{
+    border:none;
+    outline:none;
+}
+.board__name[contenteditable="true"]:active,
+.board__name[contenteditable="true"]:focus{
+    border-bottom: 1px solid black;
+}
+.board__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+}
+.board__board-column {
+    margin: 15px;
+}
+.board-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    max-width: 400px;
+    height: fit-content;
+    border-radius: 3px;
+    background: #e9e6e6;
+}
+.board-column__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 100%;
+    line-height: 3em;
+    text-align: center;
+}
+.board_column__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+.board-column__item{
+    width: 100%;
+    margin: 5px;
+}
+.board-column__task {
+    border-radius: 3px;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 2.5em;
+    padding: 0 3px;
+    background: white;
+}
+.board-column__button-add{
+    text-align: center;
+    cursor:pointer;
+}
+.add-task-form{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.add-task-form__input{
+    line-height: 1.5em;
+    width: 85%;
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+    font-family: "Montserrat", sans-serif;
+    background: #fdfdfd;
+}
+input:focus{
+    outline: none;
+}
+.add-task-form__input:focus{
+    box-shadow: 0 3px 10px lightgrey;
+}
+.board__add-column-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 146px;
+    height: 146px;
+    margin: 15px;
+    box-shadow: 0 0 50px #efefef;
+    border-radius: 3px;
+    font-size: 4em;
+    color: #efefef;
+    cursor: pointer;
+}
