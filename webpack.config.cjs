@@ -1,4 +1,4 @@
-const path =require("path");
+const path = require("path");
 
 module.exports = {
     entry: "./src/index.js",
@@ -6,6 +6,7 @@ module.exports = {
     output: {
         filename: "./bundle.js"
     },
+
     devServer: {
         static: {
             directory: path.join(__dirname, 'public'),

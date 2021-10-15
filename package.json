@@ -7,6 +7,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "copy-webpack-plugin": "^6.0.3",
+    "core-js": "^3.18.3",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "react": "^17.0.2",
@@ -14,6 +15,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-runtime": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "@svgr/webpack": "^5.5.0",
@@ -35,6 +37,9 @@
     "presets": [
       "@babel/env",
       "@babel/react"
+    ],
+    "plugins": [
+      ["@babel/transform-runtime"]
     ]
   },
   "author": "AnnaShar",
