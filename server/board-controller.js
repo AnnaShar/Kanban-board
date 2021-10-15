@@ -28,12 +28,21 @@ const getColumns = () => {
 
 const getTasksByColumn = (columnId) => {
     const board = getBoard();
-    const tasks = board.tasks.filter(task => task.columnId === columnId);
-    return tasks;
+    return board.tasks.filter(task => task.columnId === columnId);
+}
+
+const getBoardInfo = (boardId) => {
+    const board = getBoard();
+    return {
+        id: board.id,
+        name: board.name,
+        columns: board.columns
+    }
 }
 
 export default {
     getAllTasks,
     getColumns,
-    getTasksByColumn
+    getTasksByColumn,
+    getBoardInfo
 }
