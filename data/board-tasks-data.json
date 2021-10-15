@@ -25,22 +25,22 @@
       {
         "id": "t2",
         "name": "Dance funny dance!",
-        "columnId": "TODO"
+        "columnId": "c1"
       },
       {
         "id": "t3",
         "name": "Sing imaginary song",
-        "columnId": "TODO"
+        "columnId": "c1"
       },
       {
         "id": "t4",
         "name": "Work a little bit",
-        "columnId": "Done"
+        "columnId": "c3"
       },
       {
         "id": "t5",
         "name": "Make cat\"s eyes to get some food",
-        "columnId": "Done"
+        "columnId": "c3"
       }
     ]
   }
