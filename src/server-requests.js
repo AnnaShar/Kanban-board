@@ -8,7 +8,6 @@ const handleRequest = async (handler) => {
     if (response.status !== 200) {
         throw new RequestError(response.status, 'Board not found');
     }
-
     return await response.json();
 };
 
@@ -18,7 +17,7 @@ const getAllTasks = async () => {
     });
 };
 
-const getColumns = async (toyID) => {
+const getColumns = async () => {
     return handleRequest(async () => {
         return await fetch(`${url}/columns`);
     });
@@ -30,12 +29,15 @@ const getTasksByColumn = async (columnID) => {
     });
 };
 
-
+const getBoardInfo = async (boardID) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/${boardID}`);
+    });
+};
 
 export default {
-    getAllToys,
-    getToy,
-    updateToy,
-    deleteToy,
-    addToy
+    getAllTasks,
+    getColumns,
+    getTasksByColumn,
+    getBoardInfo
 }

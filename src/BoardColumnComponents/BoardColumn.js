@@ -1,19 +1,31 @@
-import {BoardTask} from "./BoardTask.js";
-import {BoardColumnHeader} from "./BoardColumnHeader.js";
-import {BoardAddTaskButton} from "./BoardAddTaskButton.js";
 import React, {useState, useEffect, useRef} from 'react';
+import {BoardTask} from './BoardTask.js';
+import {BoardColumnHeader} from './BoardColumnHeader.js';
+import {BoardAddTaskButton} from './BoardAddTaskButton.js';
+import serverRequest from '../server-requests.js';
+
 
 export const BoardColumn = (props) => {
-    const inputTaskName = useRef(null);
-    const columnTasks = props.tasks.map(task =>
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(async () => {
+        const tasksData = await serverRequest.getTasksByColumn(props.id);
+        setTasks(tasksData);
+    });
+
+    const columnBody = tasks.map(task =>
         <BoardTask
             key={task.id}
-            task={task.description}
+            task={task.name}
         />
     );
 
+
+    const inputTaskName = useRef(null);
+
+
     const [newTasks, setNewTasks] = useState([])
-    const [newTaskName, setNewTaskName] = useState("")
+    const [newTaskName, setNewTaskName] = useState('')
     const Search = ({query}) => <li>{query}</li>
 
     const handleClick = () => {
@@ -29,7 +41,7 @@ export const BoardColumn = (props) => {
     }
 
     const keyPressed = ({key}) => {
-        if (key === "Enter") {
+        if (key === 'Enter') {
             handleClick()
         }
     }
@@ -40,11 +52,11 @@ export const BoardColumn = (props) => {
     }
 
     return (
-        <div className="board__board-column board-column">
+        <div className='board__board-column board-column'>
             <BoardColumnHeader name={props.name}/>
 
-            <div className="board_column__body">
-                {columnTasks}
+            <div className='board_column__body'>
+                {columnBody}
 
                 {newTasks && newTasks.map((name, i) => (
                     <BoardTask
@@ -57,12 +69,12 @@ export const BoardColumn = (props) => {
             <BoardAddTaskButton
                 onClick={handleClick}
             />
-            <form className="add-task-form" onSubmit={submitHandler}>
+            <form className='add-task-form' onSubmit={submitHandler}>
                 <input
                     ref={inputTaskName}
-                    className="add-task-form__input"
-                    placeholder="Task name"
-                    type="text"
+                    className='add-task-form__input'
+                    placeholder='Task name'
+                    type='text'
                     onChange={updateQuery}
                     onKeyPress={keyPressed}
                 />

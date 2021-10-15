@@ -1,29 +1,30 @@
-import {BoardColumn} from "../BoardColumnComponents/BoardColumn.js";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {BoardColumn} from '../BoardColumnComponents/BoardColumn.js';
+import serverRequest from '../server-requests.js';
 
 export const BoardBody = (props) => {
-    const [newColumns, setNewColumns] = useState([]);
-    const columns = props.columns.map(column =>
+    const [columns, setColumns] = useState([]);
+
+    useEffect(async () => {
+        const columnsData = await serverRequest.getColumns();
+        setColumns(columnsData);
+    });
+
+    const boardBody = columns.map(column =>
         <BoardColumn
             key={column.id}
+            id={column.id}
             name={column.name}
-            tasks={column.tasks}
         />
     );
+
     const addColumn = (e) => {
-        setNewColumns(newColumns => newColumns.concat({name: 'Untitled', tasks: []}))
+        setColumns(columns => columns.concat({name: 'Untitled', tasks: []}))
     }
     return (
-        <div className="board__body">
-            {columns}
-            {newColumns && newColumns.map((column, i) =>
-                <BoardColumn
-                    key={i+10}
-                    name={column.name}
-                    tasks={column.tasks}
-                />
-            )}
-            <div className="board__add-column-button"
+        <div className='board__body'>
+            {boardBody}
+            <div className='board__add-column-button'
                  onClick={addColumn}
             > +
             </div>
