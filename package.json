@@ -28,7 +28,7 @@
     "webpack-dev-server": "^4.3.1"
   },
   "scripts": {
-    "start": "node --experimental-json-modules server/board-api.js",
+    "start": "node --experimental-json-modules server/board-server-api.js",
     "webpack-dev": "webpack-dev-server",
     "webpack-build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
