@@ -29,9 +29,25 @@ const getTasksByColumn = async (columnID) => {
     });
 };
 
-const getBoardInfo = async (boardID) => {
+const getBoardInfo = async () => {
     return handleRequest(async () => {
-        return await fetch(`${url}/${boardID}`);
+        return await fetch(`${url}`);
+    });
+};
+
+const moveTask = async (taskID, newColumnID) => {
+    return await fetch(`${url}/tasks/move/${taskID}`, {
+        method: 'PATCH',
+        body: newColumnID
+    });
+};
+
+const addTask = async (task, columnID) => {
+    console.log(task);
+    console.log(columnID);
+    return await fetch(`${url}/tasks/add/${columnID}`, {
+        method: 'POST',
+        body: JSON.stringify(task)
     });
 };
 
@@ -39,5 +55,7 @@ export default {
     getAllTasks,
     getColumns,
     getTasksByColumn,
-    getBoardInfo
+    getBoardInfo,
+    moveTask,
+    addTask
 }

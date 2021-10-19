@@ -8,7 +8,7 @@ export const BoardBody = (props) => {
     useEffect(async () => {
         const columnsData = await serverRequest.getColumns();
         setColumns(columnsData);
-    });
+    },[]);
 
     const boardBody = columns.map(column =>
         <BoardColumn

@@ -7,9 +7,9 @@ export const Board = () => {
     const [board, setBoard] = useState(null);
 
     useEffect(async () => {
-        const boardData = await serverRequest.getBoardInfo('b1');
+        const boardData = await serverRequest.getBoardInfo();
         setBoard(boardData);
-    });
+    },[]);
 
     return (
         <div className='board'>

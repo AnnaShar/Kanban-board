@@ -39,10 +39,9 @@ app.get('/api/board/columns/:uid', (req, res)=>{
     });
 });
 
-app.get('/api/board/:uid', (req, res)=>{
-    let id = req.params.uid;
+app.get('/api/board', (req, res)=>{
     handleResponse(req, res, ()=>{
-        return boardController.getBoardInfo(id);
+        return boardController.getBoardInfo();
     });
 });
 
@@ -52,6 +51,15 @@ app.patch('/api/board/tasks/move/:uid', (req, res) => {
     let id = req.params.uid;
     handleResponse(req, res, () => {
         return boardController.moveTaskToDifferentColumn(id, req.body);
+    });
+});
+
+app.post('/api/board/tasks/add/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.addTask(id, req.body);
     });
 });
 

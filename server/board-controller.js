@@ -1,4 +1,4 @@
-import {getDataFromFile} from './file-data-handler.js';
+import {getDataFromFile, updateFile} from './file-data-handler.js';
 import config from './config.js';
 import RequestError from './request-error.js';
 
@@ -8,7 +8,7 @@ let board = null;
 const getBoard = () => {
     if (!board) {
         try {
-            board = getDataFromFile(filePath)["b1"];
+            board = getDataFromFile(filePath);
         } catch (e) {
             throw new RequestError(404, 'Tasks not found.');
         }
@@ -18,7 +18,7 @@ const getBoard = () => {
 
 const getAllTasks = () => {
     const board = getBoard();
-    return board.tasks;
+    return Object.values(board.tasks);
 }
 
 const getColumns = () => {
@@ -26,12 +26,12 @@ const getColumns = () => {
     return board.columns;
 }
 
-const getTasksByColumn = (columnId) => {
+const getTasksByColumn = (columnID) => {
     const board = getBoard();
-    return board.tasks.filter(task => task.columnId === columnId);
+    return Object.values(board.tasks).filter(task => task.columnID === columnID);
 }
 
-const getBoardInfo = (boardId) => {
+const getBoardInfo = () => {
     const board = getBoard();
     return {
         id: board.id,
@@ -40,9 +40,61 @@ const getBoardInfo = (boardId) => {
     }
 }
 
+const moveTaskToDifferentColumn = (taskID, columnID) => {
+    const board = getBoard();
+
+    let task = board.tasks[taskID];
+    if (!task) throw new RequestError(404, `Task with id ${taskID} does not found.`);
+
+    board.tasks[taskID] = {
+        ...task,
+        columnID: columnID
+    };
+    updateBoardFile();
+}
+
+export const addTask = (columnID, task) => {
+    const board = getBoard();
+
+    const newTaskID = getNewTaskID();
+    const newTask = {
+        ...task,
+        id:newTaskID,
+        columnID:columnID
+    };
+
+    board.tasks[newTaskID] = newTask;
+
+    updateBoardFile();
+
+    return newTask;
+};
+
+const updateBoardFile = () => {
+    const board = getBoard();
+
+    try {
+        updateFile(filePath, board);
+    } catch (e) {
+        throw new RequestError(500, 'Data updating error.');
+    }
+};
+
+const getNewTaskID = () => {
+    const board = getBoard();
+    const newID = board.metaData.lastTaskID + 1;
+
+    board.metaData.lastTaskID = newID;
+    updateBoardFile();
+
+    return `t${newID}`;
+}
+
 export default {
     getAllTasks,
     getColumns,
     getTasksByColumn,
-    getBoardInfo
+    getBoardInfo,
+    moveTaskToDifferentColumn,
+    addTask
 }
