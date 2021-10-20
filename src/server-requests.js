@@ -43,8 +43,6 @@ const moveTask = async (taskID, destination) => {
 };
 
 const addTask = async (task, columnID) => {
-    console.log(task);
-    console.log(columnID);
     return await fetch(`${url}/tasks/add/${columnID}`, {
         method: 'POST',
         body: JSON.stringify(task)

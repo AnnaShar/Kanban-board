@@ -23,8 +23,10 @@ export const BoardColumn = (props) => {
         />
     );
 
-    const addToDatabase = (taskName) => {
-        serverRequest.addTask({name: taskName}, props.id);
+    const addToDatabase = async (taskName) => {
+        const newTask = await serverRequest.addTask({name: taskName}, props.id);
+        //TODO realize why board updates even if you remove next line
+        setTasks(tasksData => tasksData.concat(newTask));
     }
 
     const keyPressed = ({key}, taskName) => {

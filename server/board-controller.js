@@ -49,10 +49,10 @@ const getBoardInfo = () => {
 const addTaskToColumn = (column, taskID, index) => {
     let tasksOrder = column.tasksOrder;
 
-    if (tasksOrder.length === 0 || tasksOrder.length === index ) {
+    if (tasksOrder.length === 0 || tasksOrder.length === index) {
         tasksOrder.push(taskID);
     } else {
-        tasksOrder = tasksOrder.splice(index, 0, taskID)
+        tasksOrder.splice(index, 0, taskID)
     }
     return {
         ...column,
@@ -72,18 +72,21 @@ const moveTaskToDifferentColumn = (taskID, destination) => {
     const board = getBoard();
 
     let task = board.tasks[taskID];
+
     if (!task) throw new RequestError(404, `Task with id ${taskID} does not found.`);
+    if (!board.columns[task.columnID]) throw new RequestError(400, `Bad request. Source column is not found.`);
+    if (!board.columns[destination.columnID]) throw new RequestError(400, `Bad request. Destination column is not found.`);
+
+    board.tasks[taskID] = updateTask(task, {columnID: destination.columnID});
 
     const sourceColumn = board.columns[task.columnID];
-    const destinationColumn = board.columns[destination.columnID];
-
-    if (!sourceColumn || !destinationColumn) throw new RequestError(400, `Bad request. Wrong ids for source or destination column.`);
-
-    board.tasks[taskID] = updateTask(task, {columnID: destinationColumn.id});
     board.columns[sourceColumn.id] = removeTaskFromColumn(sourceColumn, taskID);
+
+    const destinationColumn = board.columns[destination.columnID];
     board.columns[destinationColumn.id] = addTaskToColumn(destinationColumn, taskID, destination.index);
 
     updateBoardFile();
+    return board;
 }
 
 const updateTask = (task, newProperties) => {
