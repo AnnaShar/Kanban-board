@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {BoardTask} from './BoardTask.js';
 import {BoardColumnHeader} from './BoardColumnHeader.js';
 import {BoardAddTaskButton} from './BoardAddTaskButton.js';
+import {Droppable} from 'react-beautiful-dnd';
 import serverRequest from '../server-requests.js';
 
 
@@ -13,15 +14,17 @@ export const BoardColumn = (props) => {
         setTasks(tasksData);
     }, []);
 
-    const columnBody = tasks.map(task =>
+    const columnBody = tasks.map((task, index) =>
         <BoardTask
             key={task.id}
+            id={task.id}
             task={task.name}
+            index={index}
         />
     );
 
     const addToDatabase = (taskName) => {
-        serverRequest.addTask({name:taskName},props.id);
+        serverRequest.addTask({name: taskName}, props.id);
     }
 
     const keyPressed = ({key}, taskName) => {
@@ -32,11 +35,20 @@ export const BoardColumn = (props) => {
 
     return (
         <div className='board__board-column board-column'>
+
             <BoardColumnHeader name={props.name}/>
 
-            <div className='board_column__body'>
-                {columnBody}
-            </div>
+            <Droppable droppableId={props.id}>
+                {(provided) => (
+                    <div
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                        className='board_column__body'>
+                        {columnBody}
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
 
             <BoardAddTaskButton
                 keyPressed={keyPressed}
