@@ -23,12 +23,18 @@ const getAllTasks = () => {
 
 const getColumns = () => {
     const board = getBoard();
-    return board.columns;
+    return Object.values(board.columns);
 }
 
 const getTasksByColumn = (columnID) => {
     const board = getBoard();
-    return Object.values(board.tasks).filter(task => task.columnID === columnID);
+    const column = board.columns[columnID];
+    if (column) {
+        const tasksIDs = column.tasksOrder;
+        return tasksIDs.map(id => board.tasks[id]);
+    } else {
+        throw new RequestError(404, `There is no column with id ${columnID}.`);
+    }
 }
 
 const getBoardInfo = () => {
@@ -36,21 +42,55 @@ const getBoardInfo = () => {
     return {
         id: board.id,
         name: board.name,
-        columns: board.columns
+        columns: Object.values(board.columns)
     }
 }
 
-const moveTaskToDifferentColumn = (taskID, columnID) => {
+const addTaskToColumn = (column, taskID, index) => {
+    let tasksOrder = column.tasksOrder;
+
+    if (tasksOrder.length === 0 || tasksOrder.length === index ) {
+        tasksOrder.push(taskID);
+    } else {
+        tasksOrder = tasksOrder.splice(index, 0, taskID)
+    }
+    return {
+        ...column,
+        tasksOrder: tasksOrder
+    }
+}
+
+const removeTaskFromColumn = (column, taskID) => {
+    return {
+        ...column,
+        tasksOrder: column.tasksOrder.filter(task => task !== taskID)
+    }
+}
+
+
+const moveTaskToDifferentColumn = (taskID, destination) => {
     const board = getBoard();
 
     let task = board.tasks[taskID];
     if (!task) throw new RequestError(404, `Task with id ${taskID} does not found.`);
 
-    board.tasks[taskID] = {
-        ...task,
-        columnID: columnID
-    };
+    const sourceColumn = board.columns[task.columnID];
+    const destinationColumn = board.columns[destination.columnID];
+
+    if (!sourceColumn || !destinationColumn) throw new RequestError(400, `Bad request. Wrong ids for source or destination column.`);
+
+    board.tasks[taskID] = updateTask(task, {columnID: destinationColumn.id});
+    board.columns[sourceColumn.id] = removeTaskFromColumn(sourceColumn, taskID);
+    board.columns[destinationColumn.id] = addTaskToColumn(destinationColumn, taskID, destination.index);
+
     updateBoardFile();
+}
+
+const updateTask = (task, newProperties) => {
+    return {
+        ...task,
+        ...newProperties
+    }
 }
 
 export const addTask = (columnID, task) => {
@@ -59,11 +99,12 @@ export const addTask = (columnID, task) => {
     const newTaskID = getNewTaskID();
     const newTask = {
         ...task,
-        id:newTaskID,
-        columnID:columnID
+        id: newTaskID,
+        columnID: columnID
     };
 
     board.tasks[newTaskID] = newTask;
+    board.columns[columnID].tasksOrder.push(newTaskID);
 
     updateBoardFile();
 

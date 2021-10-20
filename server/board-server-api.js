@@ -26,6 +26,7 @@ app.get('/api/board/tasks', (req, res)=>{
     });
 });
 
+
 app.get('/api/board/columns', (req, res)=>{
     handleResponse(req, res, ()=>{
         return boardController.getColumns();
