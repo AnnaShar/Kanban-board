@@ -35,10 +35,10 @@ const getBoardInfo = async () => {
     });
 };
 
-const moveTask = async (taskID, newColumnID) => {
+const moveTask = async (taskID, destination) => {
     return await fetch(`${url}/tasks/move/${taskID}`, {
         method: 'PATCH',
-        body: newColumnID
+        body: JSON.stringify(destination)
     });
 };
 
