@@ -126,7 +126,6 @@ html,
 }
 .board-column__button-add{
     text-align: center;
-    cursor:pointer;
 }
 .add-task-form{
     display: flex;
