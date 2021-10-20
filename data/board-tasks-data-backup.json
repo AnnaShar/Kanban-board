@@ -3,7 +3,7 @@
   "name": "My board",
   "metaData": {
     "lastColumnID": 3,
-    "lastTaskID": 13
+    "lastTaskID": 7
   },
   "columns": {
     "c1": {
@@ -14,25 +14,20 @@
         "t2",
         "t3",
         "t6",
-        "t8"
+        "t7"
       ]
     },
     "c2": {
       "id": "c2",
       "name": "In progress",
-      "tasksOrder": [
-        "t13"
-      ]
+      "tasksOrder": []
     },
     "c3": {
       "id": "c3",
       "name": "Done",
       "tasksOrder": [
         "t4",
-        "t5",
-        "t3",
-        "t9",
-        "t10"
+        "t5"
       ]
     }
   },
@@ -67,25 +62,10 @@
       "id": "t6",
       "columnID": "c1"
     },
-    "t8": {
+    "t7": {
       "name": "Rest",
-      "id": "t8",
+      "id": "t7",
       "columnID": "c1"
-    },
-    "t9": {
-      "name": "Test",
-      "id": "t9",
-      "columnID": "c3"
-    },
-    "t10": {
-      "name": "Test 2",
-      "id": "t10",
-      "columnID": "c3"
-    },
-    "t13": {
-      "name": "Test",
-      "id": "t13",
-      "columnID": "c2"
     }
   }
 }
