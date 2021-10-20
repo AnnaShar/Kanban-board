@@ -1,0 +1,91 @@
+{
+  "id": "b1",
+  "name": "My board",
+  "metaData": {
+    "lastColumnID": 3,
+    "lastTaskID": 13
+  },
+  "columns": {
+    "c1": {
+      "id": "c1",
+      "name": "TODO",
+      "tasksOrder": [
+        "t1",
+        "t2",
+        "t3",
+        "t6",
+        "t8"
+      ]
+    },
+    "c2": {
+      "id": "c2",
+      "name": "In progress",
+      "tasksOrder": [
+        "t13"
+      ]
+    },
+    "c3": {
+      "id": "c3",
+      "name": "Done",
+      "tasksOrder": [
+        "t4",
+        "t5",
+        "t3",
+        "t9",
+        "t10"
+      ]
+    }
+  },
+  "tasks": {
+    "t1": {
+      "id": "t1",
+      "name": "Make somebody laugh :)",
+      "columnID": "c1"
+    },
+    "t2": {
+      "id": "t2",
+      "name": "Dance funny dance!",
+      "columnID": "c1"
+    },
+    "t3": {
+      "id": "t3",
+      "name": "Sing imaginary song",
+      "columnID": "c1"
+    },
+    "t4": {
+      "id": "t4",
+      "name": "Work a little bit",
+      "columnID": "c3"
+    },
+    "t5": {
+      "id": "t5",
+      "name": "Make cat's eyes to get some food",
+      "columnID": "c3"
+    },
+    "t6": {
+      "name": "Learn something new",
+      "id": "t6",
+      "columnID": "c1"
+    },
+    "t8": {
+      "name": "Rest",
+      "id": "t8",
+      "columnID": "c1"
+    },
+    "t9": {
+      "name": "Test",
+      "id": "t9",
+      "columnID": "c3"
+    },
+    "t10": {
+      "name": "Test 2",
+      "id": "t10",
+      "columnID": "c3"
+    },
+    "t13": {
+      "name": "Test",
+      "id": "t13",
+      "columnID": "c2"
+    }
+  }
+}
