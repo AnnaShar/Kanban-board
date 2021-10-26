@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import './BoardColumnHeader.css';
 import {ReactComponent as ReactLogo} from '../images/edit_icon.svg';
 
 export const BoardColumnHeader = (props) => {

@@ -1,0 +1,21 @@
+.board__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    padding: 10px 40px;
+}
+.board__name {
+    font-size: 1.4em;
+    font-weight: bold;
+    border-bottom: 1px solid transparent;
+}
+
+.board__name[contenteditable="true"]:active,
+.board__name[contenteditable="true"]:focus{
+    border-bottom: 1px solid black;
+}

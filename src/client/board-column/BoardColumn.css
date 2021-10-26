@@ -1,0 +1,27 @@
+.board__board-column {
+    margin: 15px;
+}
+.board-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    max-width: 400px;
+    height: fit-content;
+    border-radius: 3px;
+    background: #e9e6e6;
+}
+.board_column__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+.board-column__item{
+    width: 100%;
+    margin: 5px;
+}

@@ -20,6 +20,12 @@ const handleResponse = (req, res, handler) => {
     }
 };
 
+app.get('/api/board', (req, res)=>{
+    handleResponse(req, res, ()=>{
+        return boardController.getBoard();
+    });
+});
+
 app.get('/api/board/tasks', (req, res)=>{
     handleResponse(req, res, ()=>{
         return boardController.getAllTasks();

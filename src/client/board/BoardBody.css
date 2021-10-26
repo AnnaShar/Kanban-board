@@ -1,0 +1,9 @@
+.board__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+}

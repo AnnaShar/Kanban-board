@@ -9,7 +9,7 @@
     "c1": {
       "id": "c1",
       "name": "TODO",
-      "tasksOrder": [
+      "tasks": [
         "t1",
         "t2",
         "t3",
@@ -20,12 +20,12 @@
     "c2": {
       "id": "c2",
       "name": "In progress",
-      "tasksOrder": []
+      "tasks": []
     },
     "c3": {
       "id": "c3",
       "name": "Done",
-      "tasksOrder": [
+      "tasks": [
         "t4",
         "t5"
       ]
@@ -34,38 +34,31 @@
   "tasks": {
     "t1": {
       "id": "t1",
-      "name": "Make somebody laugh :)",
-      "columnID": "c1"
+      "name": "Make somebody laugh :)"
     },
     "t2": {
       "id": "t2",
-      "name": "Dance funny dance!",
-      "columnID": "c1"
+      "name": "Dance funny dance!"
     },
     "t3": {
       "id": "t3",
-      "name": "Sing imaginary song",
-      "columnID": "c1"
+      "name": "Sing imaginary song"
     },
     "t4": {
       "id": "t4",
-      "name": "Work a little bit",
-      "columnID": "c3"
+      "name": "Work a little bit"
     },
     "t5": {
       "id": "t5",
-      "name": "Make cat's eyes to get some food",
-      "columnID": "c3"
+      "name": "Make cat's eyes to get some food"
     },
     "t6": {
-      "name": "Learn something new",
       "id": "t6",
-      "columnID": "c1"
+      "name": "Learn something new"
     },
     "t7": {
       "name": "Rest",
-      "id": "t7",
-      "columnID": "c1"
+      "id": "t7"
     }
   }
 }

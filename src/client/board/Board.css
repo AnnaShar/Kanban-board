@@ -1,0 +1,14 @@
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 90%;
+    min-height: fit-content;
+    height: 100%;
+    margin: auto;
+    justify-content: flex-start;
+    background: linear-gradient(135deg, #cea4a4, transparent);
+    border-radius: 5px;
+}

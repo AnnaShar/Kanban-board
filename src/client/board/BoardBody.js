@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {BoardColumn} from '../BoardColumnComponents/BoardColumn.js';
+import {BoardColumn} from '../board-column/BoardColumn.js';
 import {DragDropContext} from 'react-beautiful-dnd';
 import serverRequest from '../server-requests.js';
+import './BoardBody.css';
 
 
 export const BoardBody = (props) => {
@@ -24,7 +25,7 @@ export const BoardBody = (props) => {
         setColumns(columns => columns.concat({name: 'Untitled', tasks: []}))
     }
 
-    const onDragEnd = (result) => {
+    const onDragEnd = async (result) => {
         const {destination, source, draggableId} = result;
         if (!destination) {
             return;
@@ -37,11 +38,11 @@ export const BoardBody = (props) => {
             index: destination.index,
             columnID: destination.droppableId
         }
-        serverRequest.moveTask(draggableId, destinationInfo);
+        const newColumns = await serverRequest.moveTask(draggableId, destinationInfo);
+        //setColumns(newColumns);
     }
 
     return (
-
         <div className='board__body'>
             <DragDropContext
                 onDragEnd={onDragEnd}>
@@ -52,6 +53,5 @@ export const BoardBody = (props) => {
                 </div>
             </DragDropContext>
         </div>
-
     );
 }

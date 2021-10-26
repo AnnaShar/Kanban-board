@@ -4,16 +4,26 @@ const url = '/api/board';
 
 const handleRequest = async (handler) => {
     const response = await handler();
-
-    if (response.status !== 200) {
-        throw new RequestError(response.status, 'Board not found');
+    // console.log('response handled')
+    if (!response.ok) {
+        // console.log('response not ok')
+        const errorMessage = await response.text();
+        throw new RequestError(response.status, errorMessage);
+    } else {
+        // console.log('not else')
+        return await response.json();
     }
-    return await response.json();
 };
 
 const getAllTasks = async () => {
     return handleRequest(async () => {
         return await fetch(`${url}/tasks`);
+    });
+};
+
+const getBoard = async () => {
+    return handleRequest(async () => {
+        return await fetch(`${url}`);
     });
 };
 
@@ -36,20 +46,29 @@ const getBoardInfo = async () => {
 };
 
 const moveTask = async (taskID, destination) => {
-    return await fetch(`${url}/tasks/move/${taskID}`, {
-        method: 'PATCH',
-        body: JSON.stringify(destination)
+    return handleRequest(async () => {
+        return await fetch(`${url}/tasks/move/${taskID}`, {
+            method: 'PATCH',
+            body: JSON.stringify(destination)
+        });
     });
+
 };
 
 const addTask = async (task, columnID) => {
-    return await fetch(`${url}/tasks/add/${columnID}`, {
-        method: 'POST',
-        body: JSON.stringify(task)
+    return handleRequest(async () => {
+        const response =  await fetch(`${url}/tasks/add/${columnID}`, {
+            method: 'POST',
+            body: JSON.stringify(task)
+        });
+        console.log('response received')
+        return response;
     });
+
 };
 
 export default {
+    getBoard,
     getAllTasks,
     getColumns,
     getTasksByColumn,
