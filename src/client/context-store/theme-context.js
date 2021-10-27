@@ -12,4 +12,7 @@ export const themes = {
     }
 }
 
-export const ThemeContext = React.createContext(themes.blue);
+export const ThemeContext = React.createContext({
+    theme: themes.blue,
+    setTheme: ()=>{}
+});
