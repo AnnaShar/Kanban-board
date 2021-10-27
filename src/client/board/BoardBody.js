@@ -47,10 +47,12 @@ export const BoardBody = (props) => {
             <DragDropContext
                 onDragEnd={onDragEnd}>
                 {boardBody}
+
                 <div className='board__add-column-button'
                      onClick={addColumn}
                 > +
                 </div>
+
             </DragDropContext>
         </div>
     );

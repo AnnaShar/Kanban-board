@@ -22,16 +22,3 @@ input:focus {
 .add-task-form__input:focus{
     box-shadow: 0 3px 10px lightgrey;
 }
-.board__add-column-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 146px;
-    height: 146px;
-    margin: 15px;
-    box-shadow: 0 0 50px #efefef;
-    border-radius: 3px;
-    font-size: 4em;
-    color: #efefef;
-    cursor: pointer;
-}

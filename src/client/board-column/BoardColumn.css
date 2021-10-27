@@ -1,5 +1,5 @@
 .board__board-column {
-    margin: 15px;
+    margin: 10px;
 }
 .board-column {
     display: flex;
@@ -10,7 +10,7 @@
     width: 300px;
     min-width: 200px;
     height: fit-content;
-    max-height: 100%;
+    max-height: -webkit-fill-available;
     border-radius: 3px;
     background: #ebecf0;
 }
@@ -29,5 +29,22 @@
 }
 .board-column__item{
     width: 100%;
-    margin: 5px;
+    margin: 0 5px 10px 5px;
+}
+
+.board__add-column-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 146px;
+    height: 146px;
+    margin: 15px;
+    box-shadow: 0 0 50px #efefef;
+    border-radius: 3px;
+    font-size: 4em;
+    color: #efefef;
+    cursor: pointer;
+}
+.board-column__button-add{
+    cursor: pointer;
 }
