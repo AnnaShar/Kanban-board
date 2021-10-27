@@ -1,6 +1,6 @@
 import RequestError from './error.js';
 
-const url = '/api/board';
+const url = 'http://localhost:8080/api/board';
 
 const handleRequest = async (handler) => {
     const response = await handler();

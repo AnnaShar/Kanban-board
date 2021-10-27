@@ -1,15 +1,21 @@
 import express from 'express'
 import bodyParser from "body-parser";
 import boardController from './board-controller.js';
+import cors from 'cors';
 
 const port = 8080;
 
+
+
 const app = new express();
+app.use(cors());
+app.options('*', cors());
 app.use(express.static('dist'));
 app.use(bodyParser.json());
 app.use(express.json({
     type: ['application/json', 'text/plain']
 }));
+
 
 const handleResponse = (req, res, handler) => {
     try {

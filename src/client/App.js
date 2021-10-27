@@ -1,13 +1,23 @@
 import React from 'react';
+import {Switch, Route} from 'react-router-dom';
 import {Board} from './board/Board.js';
-import boardController from './board-api-controller.js';
+import {ErrorPage} from './error/ErrorPage.js';
 
 import './index.css';
 
 
 function App() {
-    // return (boardController.createBoard());
-    return (<Board/>);
+    return (
+        <Switch>
+            <Route exact path='/'>
+                <Board/>
+            </Route>
+            <Route path='/error'>
+                <ErrorPage/>
+            </Route>
+
+        </Switch>
+    );
 }
 
 export default App;

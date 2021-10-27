@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const ErrorPage = ({message})=> {
+export const ErrorPage = ()=> {
     return (
-      <h1>{message}</h1>
+      <h1>Something went wrong :(</h1>
     );
 }
