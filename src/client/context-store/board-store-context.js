@@ -5,15 +5,21 @@ export const BoardStoreContext = React.createContext(null);
 export default ({children}) => {
     const [board, setBoard] = useState(null);
 
+    const addColumn = (columnName) => {
+
+    };
+
     const addTask = (task, columnID) => {
         let newBoard = board;
-        board.tasks.push(task);
-    }
+        board.tasks.push[task.id] = task;
+        board.columns[columnID].tasks.push(task.id);
+        setBoard(newBoard);
+    };
 
     const boardContext = {
         board: board,
-        columns: board.columns,
-        tasks: board.tasks,
+        setBoard:setBoard,
+        addColumn:addColumn,
         addTask: addTask
     }
 

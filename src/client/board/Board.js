@@ -2,12 +2,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import {BoardHeader} from './BoardHeader.js';
 import {BoardBody} from './BoardBody.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
 import boardController from '../board-api-controller.js';
 import './Board.css';
 
-export const Board = (props) => {
-    const [board, setBoard] = useState(null);
+export const Board = () => {
+    const {board, setBoard} = useContext(BoardStoreContext);
     const {theme: [theme, setTheme]} = useContext(UserSettingsContext);
+
     const [settingsOpen, setSettingsOpen] = useState(false);
 
     useEffect(async () => {
@@ -28,12 +30,10 @@ export const Board = (props) => {
             {board &&
             <div className='board' style={styles}>
                 <BoardHeader name={board.name}
-                             changeTheme={props.changeTheme}
                              openSettings={openSettings}
                 />
-                <BoardBody columns={board.columns}
-                           tasks={board.tasks}
-                           settingsIsOpen={settingsOpen}
+                <BoardBody
+                    settingsIsOpen={settingsOpen}
                 />
 
             </div>}

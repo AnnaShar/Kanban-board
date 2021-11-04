@@ -1,30 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {BoardColumn} from '../board-column/BoardColumn.js';
 import {DragDropContext} from 'react-beautiful-dnd';
 import serverRequest from '../server-requests.js';
 import {BoardSettings} from '../board-settings/BoardSettings.js';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
 import './BoardBody.css';
+import {BoardAddColumnButton} from './BoardAddColumnButton.js';
 
 
 export const BoardBody = (props) => {
-    const [columns, setColumns] = useState([]);
-    const [settingsOpen, setSettingsOpen] = useState(true);
+    const {board, addColumn} = useContext(BoardStoreContext);
 
-    useEffect(async () => {
-        const columnsData = await serverRequest.getColumns();
-        setColumns(columnsData);
-    }, []);
+    const columns = board.columnsOrder;
 
-    const boardBody = columns.map(column =>
-        <BoardColumn
+    const boardBody = columns.map(columnID => {
+        const column = board.columns[columnID];
+        return (<BoardColumn
             key={column.id}
             id={column.id}
             name={column.name}
-        />
-    );
+        />);
+    });
 
-    const addColumn = (e) => {
-        setColumns(columns => columns.concat({name: 'Untitled', tasks: []}))
+    const addNewColumn = (columnName) => {
+        addColumn('Untitled');
     }
 
     const onDragEnd = async (result) => {
@@ -50,11 +49,8 @@ export const BoardBody = (props) => {
                 <DragDropContext
                     onDragEnd={onDragEnd}>
                     {boardBody}
-
-                    <div className='board__add-column-button'
-                         onClick={addColumn}
-                    > +
-                    </div>
+                    
+                    <BoardAddColumnButton/>
                 </DragDropContext>
             </div>
             {props.settingsIsOpen && <BoardSettings/>}

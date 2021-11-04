@@ -6,8 +6,7 @@ let board = null;
 
 const createBoard = async() => {
     try {
-        const boardData = await getBoard();
-        return boardData;
+        return await getBoard();
     } catch (e) {
         history.push('/error');
     }
