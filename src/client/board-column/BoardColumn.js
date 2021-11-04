@@ -14,8 +14,7 @@ export const BoardColumn = (props) => {
         try {
             const tasksData = await serverRequest.getTasksByColumn(props.id);
             setTasks(tasksData);
-        }
-        catch (e){
+        } catch (e) {
             console.log('board - ' + e.status);
             console.log('board - ' + e.message);
         }
@@ -34,8 +33,7 @@ export const BoardColumn = (props) => {
         try {
             const newTask = await serverRequest.addTask({name: taskName}, props.id);
             setTasks(tasksData => tasksData.concat(newTask));
-        }
-        catch (e){
+        } catch (e) {
             console.log('board - ' + e.status);
             console.log('board - ' + e.message);
         }

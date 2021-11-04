@@ -1,43 +1,42 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {BoardHeader} from './BoardHeader.js';
 import {BoardBody} from './BoardBody.js';
-import {ThemeContext, themes} from '../context-store/theme-context.js';
-import serverRequest from '../server-requests.js';
+import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import boardController from '../board-api-controller.js';
 import './Board.css';
 
-export const Board = () => {
+export const Board = (props) => {
     const [board, setBoard] = useState(null);
-    const {theme, setTheme} = useContext(ThemeContext);
-    const [themeState, setThemeState] = useState(themes.blue);
+    const {theme: [theme, setTheme]} = useContext(UserSettingsContext);
+    const [settingsOpen, setSettingsOpen] = useState(false);
 
     useEffect(async () => {
-        // const boardData = await serverRequest.getBoard();
         const boardData = await boardController.createBoard();
         setBoard(boardData);
     }, []);
 
-    const changeTheme = () => {
-        console.log('change theme');
-        setTheme(themes.green);
+    const openSettings = () => {
+        setSettingsOpen(!settingsOpen);
+    }
+
+    const styles = {
+        background: "linear-gradient(135deg," + theme + ", transparent)"
     }
 
     return (
-
-        <ThemeContext.Provider value={themeState}>
-
+        <>
             {board &&
-            <div className='board'
-                 style={{background: theme.background}}>
+            <div className='board' style={styles}>
                 <BoardHeader name={board.name}
-                             changeTheme={changeTheme}
+                             changeTheme={props.changeTheme}
+                             openSettings={openSettings}
                 />
                 <BoardBody columns={board.columns}
                            tasks={board.tasks}
+                           settingsIsOpen={settingsOpen}
                 />
 
             </div>}
-
-        </ThemeContext.Provider>
+        </>
     );
 }

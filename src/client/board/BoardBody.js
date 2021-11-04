@@ -2,11 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {BoardColumn} from '../board-column/BoardColumn.js';
 import {DragDropContext} from 'react-beautiful-dnd';
 import serverRequest from '../server-requests.js';
+import {BoardSettings} from '../board-settings/BoardSettings.js';
 import './BoardBody.css';
 
 
 export const BoardBody = (props) => {
     const [columns, setColumns] = useState([]);
+    const [settingsOpen, setSettingsOpen] = useState(true);
 
     useEffect(async () => {
         const columnsData = await serverRequest.getColumns();
@@ -44,16 +46,18 @@ export const BoardBody = (props) => {
 
     return (
         <div className='board__body'>
-            <DragDropContext
-                onDragEnd={onDragEnd}>
-                {boardBody}
+            <div className='board__columns'>
+                <DragDropContext
+                    onDragEnd={onDragEnd}>
+                    {boardBody}
 
-                <div className='board__add-column-button'
-                     onClick={addColumn}
-                > +
-                </div>
-
-            </DragDropContext>
+                    <div className='board__add-column-button'
+                         onClick={addColumn}
+                    > +
+                    </div>
+                </DragDropContext>
+            </div>
+            {props.settingsIsOpen && <BoardSettings/>}
         </div>
     );
 }

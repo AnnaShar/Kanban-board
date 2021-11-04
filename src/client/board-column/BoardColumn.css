@@ -13,6 +13,7 @@
     max-height: -webkit-fill-available;
     border-radius: 3px;
     background: #ebecf0;
+    color: #505050;
 }
 .board_column__body {
     display: flex;

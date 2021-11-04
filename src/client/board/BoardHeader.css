@@ -20,3 +20,9 @@
 .board__name[contenteditable="true"]:focus{
     border-bottom: 1px solid black;
 }
+
+.board__settings-icon{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}

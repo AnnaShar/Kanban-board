@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {Board} from './board/Board.js';
 import {ErrorPage} from './error/ErrorPage.js';
+import BoardProvider from './context-store/user-settings-context.js';
 
 import './index.css';
 
@@ -10,7 +11,9 @@ function App() {
     return (
         <Switch>
             <Route exact path='/'>
-                <Board/>
+                <BoardProvider>
+                    <Board/>
+                </BoardProvider>
             </Route>
             <Route path='/error'>
                 <ErrorPage/>
