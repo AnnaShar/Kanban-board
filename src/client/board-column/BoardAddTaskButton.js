@@ -1,10 +1,14 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useContext} from 'react';
+import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import texts from '../constants/texts.js';
 import './BoardAddTaskButton.css';
+
 
 export const BoardAddTaskButton = ({addTask}) => {
     const [taskName, setTaskName] = useState('');
     const [isAdding, setIsAdding] = useState(false);
     const addInput = useRef(null);
+    const {language: [language, setLanguage]} = useContext(UserSettingsContext);
 
     const handleAddClick = () => {
         // if(!isAdding && addInput){
@@ -27,9 +31,9 @@ export const BoardAddTaskButton = ({addTask}) => {
 
     return (<>
             <div
-                className="board-column__item board-column__button-add"
+                className='board-column__item board-column__button-add'
                 onClick={handleAddClick}>
-                + Add task
+                {texts.addTask.button[language.value]}
             </div>
 
             {isAdding &&
@@ -37,7 +41,7 @@ export const BoardAddTaskButton = ({addTask}) => {
                 <input
                     ref = {addInput}
                     className='add-task-form__input'
-                    placeholder='Task name'
+                    placeholder={texts.addTask.placeholder[language.value]}
                     type='text'
                     value={taskName}
                     onChange={updateTaskName}
