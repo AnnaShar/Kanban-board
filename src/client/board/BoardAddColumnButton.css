@@ -1,8 +1,10 @@
 .board__add-column {
+    width: 250px;
     padding: 11px;
     background: transparent;
-    border: 2px solid white;
-    color: #ffffff;
+    border: 2px solid #fdfdfd;
+    color: #fdfdfd;
+    box-shadow: 0 3px 10px rgb(220 214 214);
 }
 
 .board__add-column.isAdding {
@@ -62,11 +64,9 @@
 }
 
 .button-save {
-    background: #7d6f6f;
     color: white;
 }
 
 .button-cancel {
-    color: #7d6f6f;
     background: white;
 }

@@ -8,11 +8,12 @@ import texts from '../constants/texts.js';
 import './BoardSettings.css';
 
 export const BoardSettings = () => {
-    const {theme: [theme, setTheme]} = useContext(UserSettingsContext);
-    const {language: [language, setLanguage]} = useContext(UserSettingsContext);
+    const {theme, setTheme, language, setLanguage} = useContext(UserSettingsContext);
 
     const handleColorChange = (color) => {
-        setTheme(color.hex);
+        console.log(color.hex);
+        setTheme(themes[color.hex]);
+        console.log(themes[color.hex]);
     }
     const handleLanguageChange = (language) => {
         setLanguage(languages[language.value]);
@@ -27,8 +28,8 @@ export const BoardSettings = () => {
                 </div>
                 <div className='setting-item__body'>
                     <CirclePicker
-                        color={theme}
-                        colors={Object.values(themes)}
+                        color={theme.base}
+                        colors={Object.keys(themes)}
                         onChange={handleColorChange}
                     />
                 </div>
@@ -47,15 +48,13 @@ export const BoardSettings = () => {
                             ...themeSelect,
                             colors: {
                                 ...themeSelect.colors,
-                                primary50: theme,
-                                primary25: theme,
-                                primary: theme,
+                                primary50: theme.light,
+                                primary25: theme.light,
+                                primary: theme.base,
                             },
                         })}
                     />
                 </div>
-
-
             </div>
         </div>
     )

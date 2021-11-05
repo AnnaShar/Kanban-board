@@ -8,7 +8,7 @@ export const BoardAddTaskButton = ({addTask}) => {
     const [taskName, setTaskName] = useState('');
     const [isAdding, setIsAdding] = useState(false);
     const addInput = useRef(null);
-    const {language: [language, setLanguage]} = useContext(UserSettingsContext);
+    const {language} = useContext(UserSettingsContext);
 
     const handleAddClick = () => {
         // if(!isAdding && addInput){

@@ -9,7 +9,6 @@ export const BoardHeader = (props) => {
     const [editable, setEditable] = useState(false);
     const [focused, setFocus] = useState(false);
     const headerText = useRef(null);
-    const {theme: [theme, setTheme]} = useContext(UserSettingsContext);
 
     const handleEditClick = (e) => {
         setEditable(true);

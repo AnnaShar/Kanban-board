@@ -8,8 +8,7 @@ import './Board.css';
 
 export const Board = () => {
     const {board, setBoard} = useContext(BoardStoreContext);
-    const {theme: [theme, setTheme]} = useContext(UserSettingsContext);
-
+    const {theme} = useContext(UserSettingsContext);
     const [settingsOpen, setSettingsOpen] = useState(false);
 
     useEffect(async () => {
@@ -22,7 +21,7 @@ export const Board = () => {
     }
 
     const boardStyles = {
-        background: "linear-gradient(135deg," + theme + ", transparent)"
+        background: "linear-gradient(135deg," + theme.base + ", transparent)"
     }
 
     return (

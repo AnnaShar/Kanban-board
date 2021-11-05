@@ -6,7 +6,17 @@ export default ({children}) => {
     const [board, setBoard] = useState(null);
 
     const addColumn = (columnName) => {
-
+        let newBoard = board;
+        const newID = board.metaData.lastColumnID + 1;
+        const id = 'c' + newID;
+        board.columnsOrder.push(id);
+        board.columns[id] = {
+            id: id,
+            name: columnName,
+            tasks: []
+        };
+        setBoard(newBoard);
+        console.log(board);
     };
 
     const addTask = (task, columnID) => {
@@ -18,8 +28,8 @@ export default ({children}) => {
 
     const boardContext = {
         board: board,
-        setBoard:setBoard,
-        addColumn:addColumn,
+        setBoard: setBoard,
+        addColumn: addColumn,
         addTask: addTask
     }
 

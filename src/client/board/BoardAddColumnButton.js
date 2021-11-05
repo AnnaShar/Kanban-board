@@ -1,7 +1,7 @@
 import React, {useContext, useRef, useState} from 'react';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 import texts from '../constants/texts.js';
 import './BoardAddColumnButton.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const BoardAddColumnButton = () => {
     const {addColumn} = useContext(BoardStoreContext);
-    const {language: [language, setLanguage]} = useContext(UserSettingsContext);
+    const {language, theme} = useContext(UserSettingsContext);
 
     const columnAddInput = useRef(null);
     const [columnName, setColumnName] = useState('');
@@ -20,11 +20,11 @@ export const BoardAddColumnButton = () => {
     };
 
     const keyPressedHandle = async ({key}) => {
-        if (key === 'Enter' && columnName) {
-            await addColumn(columnName);
-            setColumnName('');
-            setIsAdding(false);
-        }
+        // if (key === 'Enter' && columnName) {
+        //     await addColumn(columnName);
+        //     setColumnName('');
+        //     setIsAdding(false);
+        // }
     }
 
     const handleCancel = () => {
@@ -32,12 +32,11 @@ export const BoardAddColumnButton = () => {
         setColumnName('');
     }
     const handleAddColumn = () => {
-        if (columnName){
+        if (columnName) {
             addColumn(columnName);
             setColumnName('');
             setIsAdding(false);
-        }
-        else {
+        } else {
             toast.error('Enter name of the column', {
                 position: "top-center",
                 autoClose: 2000,
@@ -46,53 +45,55 @@ export const BoardAddColumnButton = () => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme:"colored"
+                theme: "colored"
             });
         }
     }
 
     return (
         <>
-        <div
-            className={'board-column board__add-column ' + (isAdding ? 'isAdding' : '')}
-            onClick={addColumn}>
-            {!isAdding &&
             <div
-                className='board__add-column-button'
-                onClick={() => setIsAdding(!isAdding)}>
-                + {texts.addColumnText.button[language.value]}
-            </div>}
+                className={'board-column board__add-column ' + (isAdding ? 'isAdding' : '')}
+            >
+                {!isAdding &&
+                <div
+                    className='board__add-column-button'
+                    onClick={() => setIsAdding(!isAdding)}>
+                    + {texts.addColumnText.button[language.value]}
+                </div>}
 
-            {isAdding &&
-            <div
-                className='add-column-form'>
+                {isAdding &&
+                <div
+                    className='add-column-form'>
 
-                <input
-                    tabIndex={0}
-                    ref={columnAddInput}
-                    className='add-column-form__input'
-                    value={columnName}
-                    placeholder={texts.addColumnText.placeholder[language.value]}
-                    onChange={updateColumnName}
-                    onKeyPress={keyPressedHandle}
-                />
+                    <input
+                        tabIndex={0}
+                        ref={columnAddInput}
+                        className='add-column-form__input'
+                        value={columnName}
+                        placeholder={texts.addColumnText.placeholder[language.value]}
+                        onChange={updateColumnName}
+                        onKeyPress={keyPressedHandle}
+                    />
 
-                <div className='add-column-form__button-area'>
-                    <button
-                        className='add-column-form__button button-save'
-                        onClick={handleAddColumn}>
-                        {texts.addColumnText.saveButton[language.value]}
-                    </button>
+                    <div className='add-column-form__button-area'>
+                        <button
+                            className='add-column-form__button button-save'
+                            onClick={handleAddColumn}
+                            style={{backgroundColor: theme.base}}>
+                            {texts.addColumnText.saveButton[language.value]}
+                        </button>
 
-                    <button
-                        className='add-column-form__button button-cancel'
-                        onClick={handleCancel}>
-                        {texts.addColumnText.cancelButton[language.value]}
-                    </button>
-                </div>
-            </div>}
-        </div>
-    <ToastContainer/>
-    </>
+                        <button
+                            className='add-column-form__button button-cancel'
+                            onClick={handleCancel}
+                            style={{color: theme.base}}>
+                            {texts.addColumnText.cancelButton[language.value]}
+                        </button>
+                    </div>
+                </div>}
+            </div>
+            <ToastContainer/>
+        </>
     );
 }
