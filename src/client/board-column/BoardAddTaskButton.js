@@ -33,7 +33,7 @@ export const BoardAddTaskButton = ({addTask}) => {
             <div
                 className='board-column__item board-column__button-add'
                 onClick={handleAddClick}>
-                {texts.addTask.button[language.value]}
+                + {texts.addTask.button[language.value]}
             </div>
 
             {isAdding &&

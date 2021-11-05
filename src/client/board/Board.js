@@ -21,21 +21,21 @@ export const Board = () => {
         setSettingsOpen(!settingsOpen);
     }
 
-    const styles = {
+    const boardStyles = {
         background: "linear-gradient(135deg," + theme + ", transparent)"
     }
 
     return (
         <>
             {board &&
-            <div className='board' style={styles}>
-                <BoardHeader name={board.name}
-                             openSettings={openSettings}
+            <div className='board' style={boardStyles}>
+                <BoardHeader
+                    name={board.name}
+                    openSettings={openSettings}
                 />
                 <BoardBody
                     settingsIsOpen={settingsOpen}
                 />
-
             </div>}
         </>
     );

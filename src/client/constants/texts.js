@@ -1,5 +1,5 @@
 export default {
-    addTask:{
+    addTask: {
         placeholder: {
             eng: 'Task name',
             ru: 'Имя задачи'
@@ -11,8 +11,22 @@ export default {
 
     },
     addColumnText: {
-        eng: 'Add column',
-        ru: 'Добавить колонку'
+        button: {
+            eng: 'Add column',
+            ru: 'Добавить колонку'
+        },
+        placeholder: {
+            eng: 'Column name',
+            ru: 'Имя колонки'
+        },
+        saveButton:{
+            eng: 'Save',
+            ru: 'Сохранить'
+        },
+        cancelButton: {
+            eng: 'Cancel',
+            ru: 'Отмена'
+        }
     },
     settings: {
         header: {

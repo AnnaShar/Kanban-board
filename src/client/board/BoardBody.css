@@ -4,8 +4,6 @@
     justify-content: start;
     box-sizing: border-box;
     width: 100%;
-
-    /*overflow-x: auto;*/
     overflow-y: hidden;
 }
 

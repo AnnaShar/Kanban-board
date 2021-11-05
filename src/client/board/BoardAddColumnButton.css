@@ -1,0 +1,72 @@
+.board__add-column {
+    padding: 11px;
+    background: transparent;
+    border: 2px solid white;
+    color: #ffffff;
+}
+
+.board__add-column.isAdding {
+    background: #efefef;
+    border: none;
+}
+
+.board__add-column-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.add-column-form {
+    width: 100%;
+}
+
+.board-column__button-add {
+
+    cursor: pointer;
+}
+
+.add-column-form__input {
+    line-height: 2em;
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    box-sizing: border-box;
+    padding: 5px;
+    font-family: "Montserrat", sans-serif;
+    background: #fdfdfd;
+}
+
+.add-column-form__input:focus {
+    box-shadow: 0 3px 10px lightgrey;
+}
+
+.add-column-form__button-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0 0 0;
+}
+
+.add-column-form__button {
+    outline: none;
+    border: none;
+    width: 48%;
+    border-radius: 2px;
+    line-height: 1.8em;
+    cursor: pointer;
+}
+
+.button-save {
+    background: #7d6f6f;
+    color: white;
+}
+
+.button-cancel {
+    color: #7d6f6f;
+    background: white;
+}
