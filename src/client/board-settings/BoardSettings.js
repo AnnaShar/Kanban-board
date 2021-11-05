@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {CirclePicker} from 'react-color';
-import Select from 'react-select'
+import Select, { StylesConfig } from 'react-select'
 import themes from '../constants/themes.js';
 import languages from '../constants/languages.js';
 import texts from '../constants/texts.js';
@@ -43,6 +43,15 @@ export const BoardSettings = () => {
                         defaultValue = {language}
                         options={Object.values(languages)}
                         onChange={handleLanguageChange}
+                        theme={(themeSelect) => ({
+                            ...themeSelect,
+                            colors: {
+                                ...themeSelect.colors,
+                                primary50: theme,
+                                primary25: theme,
+                                primary: theme,
+                            },
+                        })}
                     />
                 </div>
 
