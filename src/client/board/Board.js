@@ -3,7 +3,7 @@ import {BoardHeader} from './BoardHeader.js';
 import {BoardBody} from './BoardBody.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
-import boardController from '../board-api-controller.js';
+import boardController from '../board-client-controller.js';
 import './Board.css';
 
 export const Board = () => {

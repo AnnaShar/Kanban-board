@@ -1,19 +1,18 @@
 import React, {useState, useRef, useContext} from 'react';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
 import texts from '../constants/texts.js';
 import './BoardAddTaskButton.css';
 
 
-export const BoardAddTaskButton = ({addTask}) => {
+export const BoardAddTaskButton = ({columnID}) => {
     const [taskName, setTaskName] = useState('');
     const [isAdding, setIsAdding] = useState(false);
+    const {addTask} = useContext(BoardStoreContext);
     const addInput = useRef(null);
     const {language} = useContext(UserSettingsContext);
 
     const handleAddClick = () => {
-        // if(!isAdding && addInput){
-        //     addInput.current.focus();
-        // }
         setIsAdding(!isAdding);
     };
 
@@ -23,7 +22,7 @@ export const BoardAddTaskButton = ({addTask}) => {
 
     const keyPressedHandle = async ({key}) => {
         if (key === 'Enter' && taskName) {
-            await addTask(taskName);
+            addTask({name: taskName}, columnID);
             setTaskName('');
             setIsAdding(false);
         }
@@ -39,7 +38,7 @@ export const BoardAddTaskButton = ({addTask}) => {
             {isAdding &&
             <div className='add-task-form'>
                 <input
-                    ref = {addInput}
+                    ref={addInput}
                     className='add-task-form__input'
                     placeholder={texts.addTask.placeholder[language.value]}
                     type='text'

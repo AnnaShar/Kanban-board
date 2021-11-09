@@ -22,6 +22,32 @@ const getBoard = async() => {
     }
 }
 
+const addColumn = async (columnName) => {
+    let newColumn = null;
+    try{
+        newColumn = await serverRequest.addColumn(columnName);
+    }
+    catch(e){
+        //TODO show toaster with error
+        alert('Не получилось чего-то на сервере');
+    }
+    return newColumn;
+}
+
+const addTask = async (task, columnID) => {
+    let newTask = null;
+    try{
+        newTask = await serverRequest.addTask(task, columnID);
+    }
+    catch(e){
+        //TODO show toaster with error
+        alert('Не получилось чего-то на сервере');
+    }
+    return newTask;
+}
+
 export default {
-    createBoard
+    createBoard,
+    addColumn,
+    addTask
 }

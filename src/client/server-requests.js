@@ -57,15 +57,22 @@ const moveTask = async (taskID, destination) => {
 
 const addTask = async (task, columnID) => {
     return handleRequest(async () => {
-        const response =  await fetch(`${url}/tasks/add/${columnID}`, {
+        return await fetch(`${url}/tasks/add/${columnID}`, {
             method: 'POST',
             body: JSON.stringify(task)
         });
-        console.log('response received')
-        return response;
     });
 
 };
+
+const addColumn = async (name) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/columns/add`, {
+            method: 'POST',
+            body: JSON.stringify({columnName: name})
+        });
+    })
+}
 
 export default {
     getBoard,
@@ -74,5 +81,6 @@ export default {
     getTasksByColumn,
     getBoardInfo,
     moveTask,
-    addTask
+    addTask,
+    addColumn
 }

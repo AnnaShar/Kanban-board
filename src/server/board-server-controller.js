@@ -97,8 +97,7 @@ const updateTask = (task, newProperties) => {
     }
 }
 
-export const addTask = (columnID, task) => {
-    //throw new RequestError(404, `Could not add task. Sorry :(`);
+const addTask = (columnID, task) => {
     const board = getBoard();
 
     const newTaskID = getNewTaskID();
@@ -113,6 +112,24 @@ export const addTask = (columnID, task) => {
     updateBoardFile();
 
     return newTask;
+};
+
+const addColumn = ({columnName}) => {
+    const board = getBoard();
+
+    const newColumnID = getNewColumnID();
+    const newColumn = {
+        id: newColumnID,
+        name: columnName,
+        tasks: []
+    };
+
+    board.columns[newColumnID] = newColumn;
+    board.columnsOrder.push(newColumnID);
+
+    updateBoardFile();
+
+    return newColumn;
 };
 
 const updateBoardFile = () => {
@@ -134,6 +151,15 @@ const getNewTaskID = () => {
 
     return `t${newID}`;
 }
+const getNewColumnID = () => {
+    const board = getBoard();
+    const newID = board.metadata.lastColumnID + 1;
+
+    board.metadata.lastColumnID = newID;
+    updateBoardFile();
+
+    return `c${newID}`;
+}
 
 export default {
     getBoard,
@@ -142,5 +168,6 @@ export default {
     getTasksByColumn,
     getBoardInfo,
     moveTaskToDifferentColumn,
-    addTask
+    addTask,
+    addColumn
 }

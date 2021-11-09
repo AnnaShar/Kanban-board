@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {BoardColumn} from '../board-column/BoardColumn.js';
 import {DragDropContext} from 'react-beautiful-dnd';
 import serverRequest from '../server-requests.js';
@@ -9,7 +9,7 @@ import {BoardAddColumnButton} from './BoardAddColumnButton.js';
 
 
 export const BoardBody = (props) => {
-    const {board, addColumn} = useContext(BoardStoreContext);
+    const {board} = useContext(BoardStoreContext);
 
     const columns = board.columnsOrder;
 
@@ -21,10 +21,6 @@ export const BoardBody = (props) => {
             name={column.name}
         />);
     });
-
-    const addNewColumn = (columnName) => {
-        addColumn('Untitled');
-    }
 
     const onDragEnd = async (result) => {
         const {destination, source, draggableId} = result;

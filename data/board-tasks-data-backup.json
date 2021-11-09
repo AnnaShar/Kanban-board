@@ -1,10 +1,11 @@
 {
   "id": "b1",
   "name": "My board",
-  "metaData": {
+  "metadata": {
     "lastColumnID": 3,
     "lastTaskID": 7
   },
+  "columnsOrder": ["c1", "c2", "c3"],
   "columns": {
     "c1": {
       "id": "c1",

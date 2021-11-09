@@ -58,7 +58,7 @@ export const BoardAddColumnButton = () => {
                 {!isAdding &&
                 <div
                     className='board__add-column-button'
-                    onClick={() => setIsAdding(!isAdding)}>
+                    onClick={() => {setIsAdding(!isAdding)}}>
                     + {texts.addColumnText.button[language.value]}
                 </div>}
 
@@ -67,7 +67,6 @@ export const BoardAddColumnButton = () => {
                     className='add-column-form'>
 
                     <input
-                        tabIndex={0}
                         ref={columnAddInput}
                         className='add-column-form__input'
                         value={columnName}
