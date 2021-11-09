@@ -6,7 +6,7 @@ export default ({children}) => {
     const [board, setBoard] = useState(null);
 
     const addColumn = (columnName) => {
-        let newBoard = board;
+        let newBoard = {...board};
         const newID = board.metaData.lastColumnID + 1;
         const id = 'c' + newID;
         board.columnsOrder.push(id);

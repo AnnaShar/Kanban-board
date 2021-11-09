@@ -4,12 +4,13 @@
     background: transparent;
     border: 2px solid #fdfdfd;
     color: #fdfdfd;
-    box-shadow: 0 3px 10px rgb(220 214 214);
+    box-shadow: 0 1px 5px #fdfdfd;
 }
 
 .board__add-column.isAdding {
     background: #efefef;
     border: none;
+    box-shadow: none;
 }
 
 .board__add-column-button {
