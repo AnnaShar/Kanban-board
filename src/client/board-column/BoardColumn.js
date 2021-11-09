@@ -4,34 +4,38 @@ import {BoardColumnHeader} from './BoardColumnHeader.js';
 import {BoardAddTaskButton} from './BoardAddTaskButton.js';
 import {Droppable} from 'react-beautiful-dnd';
 import serverRequest from '../server-requests.js';
+import './BoardColumn.css';
 
 
 export const BoardColumn = (props) => {
     const [tasks, setTasks] = useState([]);
 
     useEffect(async () => {
-        const tasksData = await serverRequest.getTasksByColumn(props.id);
-        setTasks(tasksData);
+        try {
+            const tasksData = await serverRequest.getTasksByColumn(props.id);
+            setTasks(tasksData);
+        } catch (e) {
+            console.log('board - ' + e.status);
+            console.log('board - ' + e.message);
+        }
     }, []);
 
     const columnBody = tasks.map((task, index) =>
         <BoardTask
             key={task.id}
             id={task.id}
-            task={task.name}
+            taskName={task.name}
             index={index}
         />
     );
 
     const addToDatabase = async (taskName) => {
-        const newTask = await serverRequest.addTask({name: taskName}, props.id);
-        //TODO realize why board updates even if you remove next line
-        setTasks(tasksData => tasksData.concat(newTask));
-    }
-
-    const keyPressed = ({key}, taskName) => {
-        if (key === 'Enter' && taskName) {
-            addToDatabase(taskName);
+        try {
+            const newTask = await serverRequest.addTask({name: taskName}, props.id);
+            setTasks(tasksData => tasksData.concat(newTask));
+        } catch (e) {
+            console.log('board - ' + e.status);
+            console.log('board - ' + e.message);
         }
     }
 
@@ -53,7 +57,7 @@ export const BoardColumn = (props) => {
             </Droppable>
 
             <BoardAddTaskButton
-                keyPressed={keyPressed}
+                addTask={addToDatabase}
             />
         </div>
     );

@@ -1,5 +1,9 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
+import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import themes from '../constants/themes.js';
+import './BoardHeader.css';
 import {ReactComponent as ReactLogo} from '../images/edit_icon.svg';
+import SettingIcon from '../images/settings_icon.svg';
 
 export const BoardHeader = (props) => {
     const [editable, setEditable] = useState(false);
@@ -33,6 +37,11 @@ export const BoardHeader = (props) => {
                 {/*<ReactLogo*/}
                 {/*    onClick={handleEditClick}*/}
                 {/*/>*/}
+            </div>
+            <div className='board__settings-icon settings-icon'
+                 onClick={props.openSettings}>
+                <SettingIcon
+                    fill='white'/>
             </div>
         </div>
     );

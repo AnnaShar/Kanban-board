@@ -1,0 +1,9 @@
+.board-column__task {
+    height: fit-content;
+    padding: 10px 3px;
+    border-radius: 3px;
+    text-align: center;
+    box-sizing: border-box;
+    background: white;
+    word-break: break-word;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Draggable} from 'react-beautiful-dnd';
+import './BoardTask.css';
 
 export const BoardTask = (props) => {
 
@@ -11,7 +12,7 @@ export const BoardTask = (props) => {
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
                     className='board-column__item board-column__task'>
-                    {props.task}
+                    {props.taskName}
                 </div>
             }
         </Draggable>

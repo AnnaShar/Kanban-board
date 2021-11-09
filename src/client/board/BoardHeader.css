@@ -1,0 +1,28 @@
+.board__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 10px 40px;
+    background-color: rgba(0,0,0,0.45);
+    color: white;
+}
+.board__name {
+    font-size: 1.4em;
+    font-weight: bold;
+    border-bottom: 1px solid transparent;
+}
+
+.board__name[contenteditable="true"]:active,
+.board__name[contenteditable="true"]:focus{
+    border-bottom: 1px solid black;
+}
+
+.board__settings-icon{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}

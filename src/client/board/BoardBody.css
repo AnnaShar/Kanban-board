@@ -1,0 +1,17 @@
+.board__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.board__columns{
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 4;
+    padding: 8px 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
