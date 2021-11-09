@@ -127,9 +127,9 @@ const updateBoardFile = () => {
 
 const getNewTaskID = () => {
     const board = getBoard();
-    const newID = board.metaData.lastTaskID + 1;
+    const newID = board.metadata.lastTaskID + 1;
 
-    board.metaData.lastTaskID = newID;
+    board.metadata.lastTaskID = newID;
     updateBoardFile();
 
     return `t${newID}`;
