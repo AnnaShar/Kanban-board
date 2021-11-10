@@ -3,7 +3,7 @@ import {BoardHeader} from './BoardHeader.js';
 import {BoardBody} from './BoardBody.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
-import boardController from '../board-client-controller.js';
+import boardController from '../client-board-controller.js';
 import './Board.css';
 
 export const Board = () => {
@@ -12,7 +12,7 @@ export const Board = () => {
     const [settingsOpen, setSettingsOpen] = useState(false);
 
     useEffect(async () => {
-        const boardData = await boardController.createBoard();
+        const boardData = await boardController.getBoard();
         setBoard(boardData);
     }, []);
 

@@ -1,33 +1,21 @@
 import React from 'react';
-import serverRequest from './server-requests.js';
+import serverRequest from './client-requests-api.js';
 import history from './history.js';
 
-let board = null;
 
-const createBoard = async() => {
+const getBoard = async () => {
     try {
-        return await getBoard();
+        return await serverRequest.getBoard();
     } catch (e) {
         history.push('/error');
-    }
-}
-const getBoard = async() => {
-    if (!board) {
-        try {
-            board = await serverRequest.getBoard();
-            return board;
-        } catch (e) {
-            throw new Error(e.message);
-        }
     }
 }
 
 const addColumn = async (columnName) => {
     let newColumn = null;
-    try{
+    try {
         newColumn = await serverRequest.addColumn(columnName);
-    }
-    catch(e){
+    } catch (e) {
         //TODO show toaster with error
         alert('Не получилось чего-то на сервере');
     }
@@ -36,18 +24,29 @@ const addColumn = async (columnName) => {
 
 const addTask = async (task, columnID) => {
     let newTask = null;
-    try{
+    try {
         newTask = await serverRequest.addTask(task, columnID);
-    }
-    catch(e){
+    } catch (e) {
         //TODO show toaster with error
         alert('Не получилось чего-то на сервере');
     }
     return newTask;
 }
 
+const moveTask = async (taskID, source, destination) => {
+    try {
+        await serverRequest.moveTask(taskID, source, destination);
+        return true;
+    } catch (e) {
+        //TODO show toaster with error
+        alert('Не получилось чего-то на сервере');
+    }
+    return false;
+}
+
 export default {
-    createBoard,
+    getBoard,
     addColumn,
-    addTask
+    addTask,
+    moveTask
 }

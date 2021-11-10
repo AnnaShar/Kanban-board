@@ -69,25 +69,19 @@ const removeTaskFromColumn = (column, taskID) => {
 }
 
 
-const moveTaskToDifferentColumn = (taskID, source, destination) => {
+const moveTask = (taskID, {source, destination}) => {
     const board = getBoard();
-
     let task = board.tasks[taskID];
 
     if (!task) throw new RequestError(404, `Task with id ${taskID} does not found.`);
-    if (!board.columns[source.columnID]) throw new RequestError(400, `Bad request. Source column is not found.`);
-    if (!board.columns[destination.columnID]) throw new RequestError(400, `Bad request. Destination column is not found.`);
+    if (!board.columns[source.id]) throw new RequestError(400, `Bad request. Source column is not found.`);
+    if (!board.columns[destination.id]) throw new RequestError(400, `Bad request. Destination column is not found.`);
 
-    board.tasks[taskID] = updateTask(task, {columnID: destination.columnID});
-
-    const sourceColumn = board.columns[source.columnID];
-    board.columns[sourceColumn.id] = removeTaskFromColumn(sourceColumn, taskID);
-
-    const destinationColumn = board.columns[destination.columnID];
-    board.columns[destinationColumn.id] = addTaskToColumn(destinationColumn, taskID, destination.index);
+    board.columns[source.id].tasks.splice(source.index, 1);
+    board.columns[destination.id].tasks.splice(destination.index, 0, taskID);
 
     updateBoardFile();
-    return Object.values(board.columns);
+    return true;
 }
 
 const updateTask = (task, newProperties) => {
@@ -167,7 +161,7 @@ export default {
     getColumns,
     getTasksByColumn,
     getBoardInfo,
-    moveTaskToDifferentColumn,
+    moveTask,
     addTask,
     addColumn
 }

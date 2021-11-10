@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from "body-parser";
-import boardController from './board-server-controller.js';
+import boardController from './server-board-controller.js';
 import cors from 'cors';
 
 const port = 8080;
@@ -61,7 +61,7 @@ app.patch('/api/board/tasks/move/:uid', (req, res) => {
 
     let id = req.params.uid;
     handleResponse(req, res, () => {
-        return boardController.moveTaskToDifferentColumn(id, req.body);
+        return boardController.moveTask(id, req.body);
     });
 });
 

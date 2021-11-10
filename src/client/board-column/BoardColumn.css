@@ -28,5 +28,5 @@
 }
 .board-column__item{
     width: 100%;
-    margin: 0 5px 10px 5px;
+    margin-bottom: 10px;
 }

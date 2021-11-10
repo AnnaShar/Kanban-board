@@ -45,16 +45,6 @@ const getBoardInfo = async () => {
     });
 };
 
-const moveTask = async (taskID, destination) => {
-    return handleRequest(async () => {
-        return await fetch(`${url}/tasks/move/${taskID}`, {
-            method: 'PATCH',
-            body: JSON.stringify(destination)
-        });
-    });
-
-};
-
 const addTask = async (task, columnID) => {
     return handleRequest(async () => {
         return await fetch(`${url}/tasks/add/${columnID}`, {
@@ -62,7 +52,6 @@ const addTask = async (task, columnID) => {
             body: JSON.stringify(task)
         });
     });
-
 };
 
 const addColumn = async (name) => {
@@ -71,8 +60,17 @@ const addColumn = async (name) => {
             method: 'POST',
             body: JSON.stringify({columnName: name})
         });
-    })
-}
+    });
+};
+
+const moveTask = async (taskID, source, destination) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/tasks/move/${taskID}`, {
+            method: 'PATCH',
+            body: JSON.stringify({source: source, destination: destination})
+        });
+    });
+};
 
 export default {
     getBoard,

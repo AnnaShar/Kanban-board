@@ -1,15 +1,14 @@
 import React, {useContext} from 'react';
 import {BoardColumn} from '../board-column/BoardColumn.js';
 import {DragDropContext} from 'react-beautiful-dnd';
-import serverRequest from '../server-requests.js';
 import {BoardSettings} from '../board-settings/BoardSettings.js';
+import {BoardAddColumnButton} from './BoardAddColumnButton.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import './BoardBody.css';
-import {BoardAddColumnButton} from './BoardAddColumnButton.js';
 
 
 export const BoardBody = (props) => {
-    const {board} = useContext(BoardStoreContext);
+    const {board, moveTask} = useContext(BoardStoreContext);
 
     const columns = board.columnsOrder;
 
@@ -22,7 +21,7 @@ export const BoardBody = (props) => {
         />);
     });
 
-    const onDragEnd = async (result) => {
+    const onDragEnd = (result) => {
         const {destination, source, draggableId} = result;
         if (!destination) {
             return;
@@ -31,12 +30,10 @@ export const BoardBody = (props) => {
             && destination.index === source.index) {
             return;
         }
-        const destinationInfo = {
-            index: destination.index,
-            columnID: destination.droppableId
-        }
-        const newColumns = await serverRequest.moveTask(draggableId, destinationInfo);
-        //setColumns(newColumns);
+
+        moveTask(draggableId,
+            {id: source.droppableId, index: source.index},
+            {id: destination.droppableId, index: destination.index});
     }
 
     return (
