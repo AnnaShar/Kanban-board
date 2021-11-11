@@ -4,23 +4,34 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+    height: 53px;
     box-sizing: border-box;
     padding: 10px 40px;
-    background-color: rgba(0,0,0,0.45);
+    background-color: rgba(0, 0, 0, 0.45);
     color: white;
-}
-.board__name {
     font-size: 1.4em;
     font-weight: bold;
-    border-bottom: 1px solid transparent;
 }
 
-.board__name[contenteditable="true"]:active,
-.board__name[contenteditable="true"]:focus{
-    border-bottom: 1px solid black;
+.board-header__text {
+    max-width: 700px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.board__settings-icon{
+.board-header__input {
+    background: transparent;
+    border: none;
+    box-shadow: 0 0 3px -3px white, 0 2px 0 0 white;
+    padding: 0;
+}
+
+.board-header__input.error-input{
+    box-shadow: 0 0 3px -3px red, 0 2px 0 0 red;
+}
+
+.board__settings-icon {
     position: absolute;
     right: 10px;
     cursor: pointer;

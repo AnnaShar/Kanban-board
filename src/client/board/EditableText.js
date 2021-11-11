@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import './EditableText.css';
 
 export const EditableText = (props) => {
+    const {theme} = useContext(UserSettingsContext);
     const [isEdit, setIsEdit] = useState(false);
     const [isInputEmpty, setIsInputEmpty] = useState(false);
     const [text, setText] = useState(props.text);
@@ -30,6 +33,7 @@ export const EditableText = (props) => {
         else{
             setIsEdit(false);
             setText(previousText);
+            setIsInputEmpty(false);
         }
     };
 
@@ -51,6 +55,7 @@ export const EditableText = (props) => {
                 autoFocus
                 className={`editable-text__input ${props.className}__input ${isInputEmpty ? 'error-input' : ''}`}
                 type='text'
+                style={{borderColor:theme.base}}
                 value={text}
                 onChange={updateColumnName}
                 onKeyDown={handleKeyDown}
