@@ -9,7 +9,6 @@ export const BoardAddTaskButton = ({columnID}) => {
     const [taskName, setTaskName] = useState('');
     const [isAdding, setIsAdding] = useState(false);
     const {addTask} = useContext(BoardStoreContext);
-    const addInput = useRef(null);
     const {language} = useContext(UserSettingsContext);
 
     const handleAddClick = () => {
@@ -38,7 +37,7 @@ export const BoardAddTaskButton = ({columnID}) => {
             {isAdding &&
             <div className='add-task-form'>
                 <input
-                    ref={addInput}
+                    autoFocus
                     className='add-task-form__input'
                     placeholder={texts.addTask.placeholder[language.value]}
                     type='text'

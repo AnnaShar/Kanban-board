@@ -11,7 +11,6 @@ export const BoardAddColumnButton = () => {
     const {addColumn} = useContext(BoardStoreContext);
     const {language, theme} = useContext(UserSettingsContext);
 
-    const columnAddInput = useRef(null);
     const [columnName, setColumnName] = useState('');
     const [isAdding, setIsAdding] = useState(false);
 
@@ -67,7 +66,7 @@ export const BoardAddColumnButton = () => {
                     className='add-column-form'>
 
                     <input
-                        ref={columnAddInput}
+                        autoFocus
                         className='add-column-form__input'
                         value={columnName}
                         placeholder={texts.addColumnText.placeholder[language.value]}
