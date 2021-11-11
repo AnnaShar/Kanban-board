@@ -46,6 +46,21 @@ export default ({children}) => {
         }
     };
 
+    const editColumnName = (columnID, columnName) => {
+        const newBoard = {
+            ...board,
+            columns:{
+                ...board.columns,
+                [columnID]: {
+                    ...board.columns[columnID],
+                    name: columnName
+                }
+            }
+        };
+
+        setBoard(newBoard);
+    }
+
     const moveTask = async (taskID, source, destination) => {
         const backUpBoard = {...board};
 
@@ -66,6 +81,7 @@ export default ({children}) => {
         setBoard: setBoard,
         addColumn: addColumn,
         addTask: addTask,
+        editColumnName:editColumnName,
         moveTask: moveTask
     }
 

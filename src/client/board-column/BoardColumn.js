@@ -24,7 +24,9 @@ export const BoardColumn = (props) => {
     return (
         <div className='board__board-column board-column'>
 
-            <BoardColumnHeader name={props.name}/>
+            <BoardColumnHeader name={props.name}
+                               id={props.id}
+            />
 
             <Droppable droppableId={props.id}>
                 {(provided) => (
