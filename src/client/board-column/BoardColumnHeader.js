@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
-import {EditableText} from '../board/EditableText.js';
+import {EditableText} from '../service-components/EditableText.js';
 
 import './BoardColumnHeader.css';
 

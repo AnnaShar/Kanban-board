@@ -49,7 +49,7 @@ export default ({children}) => {
     const editColumnName = (columnID, columnName) => {
         const newBoard = {
             ...board,
-            columns:{
+            columns: {
                 ...board.columns,
                 [columnID]: {
                     ...board.columns[columnID],
@@ -62,7 +62,7 @@ export default ({children}) => {
     }
 
     const moveTask = async (taskID, source, destination) => {
-        const backUpBoard = {...board};
+        const backupBoard = {...board};
 
         let newBoard = {...board};
         newBoard.columns[source.id].tasks.splice(source.index, 1);
@@ -72,17 +72,55 @@ export default ({children}) => {
 
         const movedSuccessfully = await boardController.moveTask(taskID, source, destination);
         if (!movedSuccessfully) {
-            setBoard(backUpBoard);
+            setBoard(backupBoard);
         }
     }
 
+    const deleteTask = async (taskID, columnID) => {
+        const backupBoard = {...board};
+        const columnTasks = board.columns[columnID].tasks.filter(task => task !== taskID);
+        const {[taskID]: removedTask, ...restTasks} = board.tasks;
+
+        setBoard(previousBoard => ({
+            ...previousBoard,
+            columns: {
+                ...previousBoard.columns,
+                [columnID]: {
+                    ...previousBoard.columns[columnID],
+                    tasks: columnTasks
+                }
+            },
+            tasks: restTasks
+        }));
+
+        const deletedSuccessfully = await boardController.deleteTask(taskID, columnID);
+        if (!deletedSuccessfully) {
+            setBoard(backupBoard);
+        }
+    }
+
+    const setDeletingTaskState = (taskID, isDeleting) => {
+        setBoard(previousBoard => ({
+            ...previousBoard,
+            tasks: {
+                ...previousBoard.tasks,
+                [taskID]: {
+                    ...previousBoard.tasks[taskID],
+                    isDeleting: isDeleting
+                }
+            }
+        }));
+    }
+
     const boardContext = {
-        board: board,
-        setBoard: setBoard,
-        addColumn: addColumn,
-        addTask: addTask,
-        editColumnName:editColumnName,
-        moveTask: moveTask
+        board,
+        setBoard,
+        addColumn,
+        addTask,
+        editColumnName,
+        moveTask,
+        deleteTask,
+        setDeletingTaskState
     }
 
     return <BoardStoreContext.Provider value={boardContext}>{children}</BoardStoreContext.Provider>;

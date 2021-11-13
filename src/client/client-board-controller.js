@@ -44,9 +44,21 @@ const moveTask = async (taskID, source, destination) => {
     return false;
 }
 
+const deleteTask = async(taskID, columnID) => {
+    try {
+        await serverRequest.deleteTask(taskID, columnID);
+        return true;
+    } catch (e) {
+        //TODO show toaster with error
+        alert('Не получилось чего-то на сервере');
+    }
+    return false;
+}
+
 export default {
     getBoard,
     addColumn,
     addTask,
-    moveTask
+    moveTask,
+    deleteTask
 }

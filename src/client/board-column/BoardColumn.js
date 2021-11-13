@@ -15,8 +15,7 @@ export const BoardColumn = (props) => {
     const columnBody = tasks.map((task, index) =>
         <BoardTask
             key={task.id}
-            id={task.id}
-            taskName={task.name}
+            task = {task}
             index={index}
         />
     );

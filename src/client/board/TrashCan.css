@@ -1,0 +1,38 @@
+.trash-can {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    /*top: 0;*/
+    bottom: 0;
+    width: 100%;
+    height: 52px;
+    background: rgba(255, 255, 255, 0.85);
+    transition: visibility 0.2s, opacity 0.2s linear;
+}
+
+.trash-can.show{
+    visibility: visible;
+    opacity: 1;
+}
+
+.trash-can.hide{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.trash-can svg {
+    position: absolute;
+    left: 0;
+}
+
+.trash-can.hide svg {
+    position: absolute;
+    left: 0;
+    fill: #ffffff;
+}
+.trash-can.show svg {
+    position: absolute;
+    left: 0;
+    fill: #d2537a;
+}

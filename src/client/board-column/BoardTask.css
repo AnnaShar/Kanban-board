@@ -7,3 +7,8 @@
     background: white;
     word-break: break-word;
 }
+
+.board-column__task.isDeleting{
+    background: #d2537a;
+    color: white;
+}

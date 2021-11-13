@@ -47,29 +47,8 @@ const getBoardInfo = () => {
     }
 }
 
-const addTaskToColumn = (column, taskID, index) => {
-    let tasks = column.tasks;
-
-    if (tasks.length === 0 || tasks.length === index) {
-        tasks.push(taskID);
-    } else {
-        tasks.splice(index, 0, taskID)
-    }
-    return {
-        ...column,
-        tasks: tasks
-    }
-}
-
-const removeTaskFromColumn = (column, taskID) => {
-    return {
-        ...column,
-        tasks: column.tasks.filter(task => task !== taskID)
-    }
-}
-
-
 const moveTask = (taskID, {source, destination}) => {
+    // throw new RequestError(404, `Task with id ${taskID} does not found.`);
     const board = getBoard();
     let task = board.tasks[taskID];
 
@@ -79,6 +58,22 @@ const moveTask = (taskID, {source, destination}) => {
 
     board.columns[source.id].tasks.splice(source.index, 1);
     board.columns[destination.id].tasks.splice(destination.index, 0, taskID);
+
+    updateBoardFile();
+    return true;
+}
+
+const deleteTask = ({taskID, columnID}) => {
+    const board = getBoard();
+    let task = board.tasks[taskID];
+
+    if (!task) throw new RequestError(404, `Task with id ${taskID} does not found.`);
+
+    const columnTasks = board.columns[columnID].tasks.filter(task => task !== taskID);
+    const {[taskID]: removedTask, ...restTasks} = board.tasks;
+
+    board.columns[columnID].tasks = columnTasks;
+    board.tasks = restTasks;
 
     updateBoardFile();
     return true;
@@ -163,5 +158,6 @@ export default {
     getBoardInfo,
     moveTask,
     addTask,
-    addColumn
+    addColumn,
+    deleteTask
 }

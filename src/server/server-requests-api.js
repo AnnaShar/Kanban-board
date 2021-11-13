@@ -65,6 +65,14 @@ app.patch('/api/board/tasks/move/:uid', (req, res) => {
     });
 });
 
+app.delete('/api/board/tasks/delete', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    handleResponse(req, res, () => {
+        return boardController.deleteTask(req.body);
+    });
+});
+
 app.post('/api/board/tasks/add/:uid', (req, res) => {
     if (!req.body) return res.sendStatus(400);
 

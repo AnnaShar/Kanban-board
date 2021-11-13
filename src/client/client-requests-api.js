@@ -72,6 +72,15 @@ const moveTask = async (taskID, source, destination) => {
     });
 };
 
+const deleteTask = async (taskID, columnID) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/tasks/delete`, {
+            method: 'DELETE',
+            body: JSON.stringify({taskID: taskID, columnID: columnID})
+        });
+    });
+};
+
 export default {
     getBoard,
     getAllTasks,
@@ -80,5 +89,6 @@ export default {
     getBoardInfo,
     moveTask,
     addTask,
-    addColumn
+    addColumn,
+    deleteTask
 }
