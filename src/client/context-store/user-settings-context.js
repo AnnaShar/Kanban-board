@@ -25,7 +25,7 @@ export default ({children}) => {
 
     const [theme, setTheme] = useState(getTheme());
     const [language, setLanguage] = useState(getLanguage());
-
+    const [settingsIsOpen, setSettingsIsOpen] = useState(false);
 
     const saveTheme = (theme) => {
         setTheme(theme)
@@ -41,7 +41,9 @@ export default ({children}) => {
         theme: theme,
         setTheme: saveTheme,
         language: language,
-        setLanguage: saveLanguage
+        setLanguage: saveLanguage,
+        settingsIsOpen: settingsIsOpen,
+        openSettings: setSettingsIsOpen
     }
 
     return <UserSettingsContext.Provider value={settings}>{children}</UserSettingsContext.Provider>;
