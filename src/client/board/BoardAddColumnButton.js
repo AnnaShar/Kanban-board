@@ -20,11 +20,9 @@ export const BoardAddColumnButton = () => {
     };
 
     const keyPressedHandle = async ({key}) => {
-        // if (key === 'Enter' && columnName) {
-        //     await addColumn(columnName);
-        //     setColumnName('');
-        //     setIsAdding(false);
-        // }
+        if (key === 'Enter' && columnName) {
+            handleAddColumn();
+        }
     }
 
     const handleCancel = () => {
