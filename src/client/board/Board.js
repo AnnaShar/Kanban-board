@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {BoardHeader} from './BoardHeader.js';
 import {BoardBody} from './BoardBody.js';
 import {BoardFooter} from './BoardFooter.js';
-import {DragDropContainer} from '../service-components/DragDropContainer.js';
+import {DragDropContextContainer} from '../drag-drop-components/DragDropContextContainer.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import boardController from '../client-board-controller.js';
@@ -32,7 +32,7 @@ export const Board = () => {
             {board &&
             <div className='board'
                  style={boardStyles}>
-                <DragDropContainer
+                <DragDropContextContainer
                     moveTask={moveTask}
                     deleteTask={deleteTask}>
 
@@ -45,7 +45,7 @@ export const Board = () => {
                     
                     <BoardFooter/>
 
-                </DragDropContainer>
+                </DragDropContextContainer>
             </div>}
         </>
     );

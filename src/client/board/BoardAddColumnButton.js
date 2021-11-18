@@ -1,8 +1,9 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {ToastContainer, toast} from 'react-toastify';
 import texts from '../constants/texts.js';
+
 import './BoardAddColumnButton.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -52,12 +53,14 @@ export const BoardAddColumnButton = () => {
     return (
         <>
             <div
-                className={'board-column board__add-column ' + (isAdding ? 'isAdding' : '')}
-            >
+                className={'board-column board__add-column ' + (isAdding ? 'isAdding' : '')}>
+
                 {!isAdding &&
                 <div
                     className='board__add-column-button'
-                    onClick={() => {setIsAdding(!isAdding)}}>
+                    onClick={() => {
+                        setIsAdding(!isAdding)
+                    }}>
                     + {texts.addColumnText.button[language.value]}
                 </div>}
 

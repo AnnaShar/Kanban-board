@@ -6,13 +6,22 @@
     width: 100%;
     height: 100%;
     overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.board__columns-area{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 8px 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .board__columns{
     display: flex;
     flex-grow: 1;
     flex-shrink: 4;
-    padding: 8px 10px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    width: fit-content;
+    height: 100%;
 }

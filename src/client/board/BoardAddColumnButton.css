@@ -27,12 +27,11 @@
 }
 
 .board-column__button-add {
-
     cursor: pointer;
 }
 
 .add-column-form__input {
-    line-height: 2em;
+    line-height: 2.3em;
     width: 100%;
     border-radius: 3px;
     border: none;
@@ -52,7 +51,7 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    padding: 10px 0 0 0;
+    padding: 15px 0 0 0;
 }
 
 .add-column-form__button {

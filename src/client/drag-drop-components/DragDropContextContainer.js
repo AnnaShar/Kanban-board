@@ -1,9 +1,9 @@
-import {DragDropContext} from "react-beautiful-dnd";
-import {TrashCanContext} from "../context-store/trash-can-context.js";
-import React, {useContext} from "react";
-import {BoardStoreContext} from "../context-store/board-store-context.js";
+import React, {useContext} from 'react';
+import {DragDropContext} from 'react-beautiful-dnd';
+import {TrashCanContext} from '../context-store/trash-can-context.js';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
 
-export const DragDropContainer = ({children, moveTask, deleteTask}) => {
+export const DragDropContextContainer = ({children, moveTask, deleteTask}) => {
     const {showTrashCan, hideTrashCan} = useContext(TrashCanContext);
     const {setDeletingTaskState} = useContext(BoardStoreContext);
 
@@ -14,6 +14,7 @@ export const DragDropContainer = ({children, moveTask, deleteTask}) => {
     const onDragUpdate = (result) => {
         const {destination, draggableId} = result;
         if (!destination) {
+            setDeletingTaskState(draggableId, false);
             return;
         }
         if (destination.droppableId === 'trash-can-container') {

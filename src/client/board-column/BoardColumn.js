@@ -2,46 +2,52 @@ import React, {useContext} from 'react';
 import {BoardTask} from './BoardTask.js';
 import {BoardColumnHeader} from './BoardColumnHeader.js';
 import {BoardAddTaskButton} from './BoardAddTaskButton.js';
-import {Droppable} from 'react-beautiful-dnd';
+import {DraggableContainer} from '../drag-drop-components/DraggableContainer.js';
+import {DroppableContainer} from '../drag-drop-components/DroppableContainer.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import './BoardColumn.css';
 
 
-export const BoardColumn = (props) => {
+export const BoardColumn = ({column, index}) => {
     const {board} = useContext(BoardStoreContext);
 
-    const tasks = board.columns[props.id].tasks.map(taskID => board.tasks[taskID]);
+    const tasks = board.columns[column.id].tasks.map(taskID => board.tasks[taskID]);
 
     const columnBody = tasks.map((task, index) =>
         <BoardTask
             key={task.id}
-            task = {task}
+            task={task}
             index={index}
         />
     );
 
     return (
-        <div className='board__board-column board-column'>
+        <DraggableContainer
+            draggableId={column.id}
+            index={index}
+            type='column'
+            className='board__board-column board-column'>
 
-            <BoardColumnHeader name={props.name}
-                               id={props.id}
-            />
+                <BoardColumnHeader
+                    name={column.name}
+                    id={column.id}
+                />
 
-            <Droppable droppableId={props.id}>
-                {(provided) => (
-                    <div
-                        ref={provided.innerRef}
-                        {...provided.droppableProps}
-                        className='board_column__body'>
-                        {columnBody}
-                        {provided.placeholder}
-                    </div>
-                )}
-            </Droppable>
+                <DroppableContainer
+                    droppableId={column.id}
+                    direction='vertical'
+                    type='task'
+                    className='board_column__body'>
 
-            <BoardAddTaskButton
-                columnID={props.id}
-            />
-        </div>
+                    {columnBody}
+
+                </DroppableContainer>
+
+                <BoardAddTaskButton
+                    columnID={column.id}
+                />
+
+        </DraggableContainer>
+
     );
 }
