@@ -121,6 +121,33 @@ const addColumn = ({columnName}) => {
     return newColumn;
 };
 
+const moveColumn = (columnID, {sourceIndex, destinationIndex}) => {
+    const board = getBoard();
+    let column = board.columns[columnID];
+
+    if (!column) throw new RequestError(404, `Column with id ${columnID} does not found.`);
+
+    board.columnsOrder.splice(sourceIndex, 1);
+    board.columnsOrder.splice(destinationIndex, 0, columnID);
+
+    updateBoardFile();
+    return true;
+}
+
+const deleteColumn = (columnID) => {
+    const board = getBoard();
+    let column = board.columns[columnID];
+
+    if (!column) throw new RequestError(404, `Column with id ${columnID} does not found.`);
+
+    board.columnsOrder = board.columnsOrder.filter(column => column !== columnID);
+    board.columns[columnID].tasks.forEach(task => delete board.tasks[task]);
+    delete board.columns[columnID];
+
+    updateBoardFile();
+    return true;
+}
+
 const updateBoardFile = () => {
     const board = getBoard();
 
@@ -157,7 +184,9 @@ export default {
     getTasksByColumn,
     getBoardInfo,
     moveTask,
+    deleteTask,
     addTask,
     addColumn,
-    deleteTask
+    moveColumn,
+    deleteColumn
 }

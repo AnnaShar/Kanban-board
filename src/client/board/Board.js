@@ -10,7 +10,7 @@ import boardController from '../client-board-controller.js';
 import './Board.css';
 
 export const Board = () => {
-    const {board, setBoard, moveTask, deleteTask} = useContext(BoardStoreContext);
+    const {board, setBoard, moveTask, deleteTask, moveColumn, deleteColumn} = useContext(BoardStoreContext);
     const {theme} = useContext(UserSettingsContext);
     const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -26,7 +26,7 @@ export const Board = () => {
     const boardStyles = {
         background: 'linear-gradient(135deg,' + theme.base + ', transparent)'
     }
-    
+
     return (
         <>
             {board &&
@@ -34,7 +34,9 @@ export const Board = () => {
                  style={boardStyles}>
                 <DragDropContextContainer
                     moveTask={moveTask}
-                    deleteTask={deleteTask}>
+                    deleteTask={deleteTask}
+                    moveColumn={moveColumn}
+                    deleteColumn={deleteColumn}>
 
                     <BoardHeader
                         name={board.name}
@@ -42,7 +44,7 @@ export const Board = () => {
                     <BoardBody
                         settingsIsOpen={settingsOpen}
                     />
-                    
+
                     <BoardFooter/>
 
                 </DragDropContextContainer>

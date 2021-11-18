@@ -26,7 +26,7 @@ export const BoardColumn = ({column, index}) => {
             draggableId={column.id}
             index={index}
             type='column'
-            className='board__board-column board-column'>
+            className={`board__board-column board-column ${column.isDeleting ? 'isDeleting' : ''}`}>
 
                 <BoardColumnHeader
                     name={column.name}

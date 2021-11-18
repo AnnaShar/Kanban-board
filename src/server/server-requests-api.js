@@ -90,6 +90,24 @@ app.post('/api/board/columns/add', (req, res) => {
     });
 });
 
+app.patch('/api/board/columns/move/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.moveColumn(id, req.body);
+    });
+});
+
+app.delete('/api/board/columns/delete/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.deleteColumn(id);
+    });
+});
+
 app.listen(port, () => {
     console.log(`Listening to requests on http://localhost:${port}`);
 });

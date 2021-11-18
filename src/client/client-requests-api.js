@@ -81,6 +81,23 @@ const deleteTask = async (taskID, columnID) => {
     });
 };
 
+const moveColumn = async (columnID, sourceIndex, destinationIndex) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/columns/move/${columnID}`, {
+            method: 'PATCH',
+            body: JSON.stringify({sourceIndex: sourceIndex, destinationIndex: destinationIndex})
+        });
+    });
+};
+
+const deleteColumn = async (columnID) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/columns/delete/${columnID}`, {
+            method: 'DELETE'
+        });
+    });
+};
+
 export default {
     getBoard,
     getAllTasks,
@@ -89,6 +106,8 @@ export default {
     getBoardInfo,
     moveTask,
     addTask,
+    deleteTask,
     addColumn,
-    deleteTask
+    moveColumn,
+    deleteColumn
 }

@@ -44,9 +44,31 @@ const moveTask = async (taskID, source, destination) => {
     return false;
 }
 
-const deleteTask = async(taskID, columnID) => {
+const deleteTask = async (taskID, columnID) => {
     try {
         await serverRequest.deleteTask(taskID, columnID);
+        return true;
+    } catch (e) {
+        //TODO show toaster with error
+        alert('Не получилось чего-то на сервере');
+    }
+    return false;
+}
+
+const moveColumn = async (columnID, sourceIndex, destinationIndex) => {
+    try {
+        await serverRequest.moveColumn(columnID, sourceIndex, destinationIndex);
+        return true;
+    } catch (e) {
+        //TODO show toaster with error
+        alert('Не получилось чего-то на сервере');
+    }
+    return false;
+}
+
+const deleteColumn = async (columnID) => {
+    try {
+        await serverRequest.deleteColumn(columnID);
         return true;
     } catch (e) {
         //TODO show toaster with error
@@ -60,5 +82,7 @@ export default {
     addColumn,
     addTask,
     moveTask,
-    deleteTask
+    deleteTask,
+    moveColumn,
+    deleteColumn
 }

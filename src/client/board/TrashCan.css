@@ -7,6 +7,8 @@
     bottom: 0;
     width: 100%;
     height: 52px;
+    max-height: 52px;
+    overflow: auto;
     background: rgba(255, 255, 255, 0.85);
     transition: visibility 0.2s, opacity 0.2s linear;
 }

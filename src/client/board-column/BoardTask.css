@@ -6,6 +6,7 @@
     box-sizing: border-box;
     background: white;
     word-break: break-word;
+    color: #505050;
 }
 
 .board-column__task.isDeleting{

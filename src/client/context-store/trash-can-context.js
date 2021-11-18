@@ -4,6 +4,7 @@ export const TrashCanContext = React.createContext(null);
 
 export default ({children}) => {
     const [trashCanActive, setTrashCanActive] = useState(false);
+    const [deletingType, setDeletingType] = useState('task');
 
     const showTrashCan = () => {
         setTrashCanActive(true);
@@ -16,7 +17,9 @@ export default ({children}) => {
     const state = {
         trashCanActive,
         showTrashCan,
-        hideTrashCan
+        hideTrashCan,
+        deletingType,
+        setDeletingType
     }
 
     return <TrashCanContext.Provider value={state}>{children}</TrashCanContext.Provider>;

@@ -99,6 +99,42 @@ export default ({children}) => {
         }
     }
 
+    const moveColumn = async (columnID, sourceIndex, destinationIndex) => {
+        const backupBoard = {...board};
+
+        let newBoard = {...board};
+        newBoard.columnsOrder.splice(sourceIndex, 1);
+        newBoard.columnsOrder.splice(destinationIndex, 0, columnID);
+
+        setBoard(newBoard);
+
+        const movedSuccessfully = await boardController.moveColumn(columnID, sourceIndex, destinationIndex);
+        if (!movedSuccessfully) {
+            setBoard(backupBoard);
+        }
+    }
+
+    const deleteColumn = async (columnID) => {
+        const backupBoard = {...board};
+
+        const columnsOrder = board.columnsOrder.filter(column => column !== columnID);
+        const {[columnID]: removedColumn, ...restColumns} = board.columns;
+        let allTasks = board.tasks;
+        board.columns[columnID].tasks.forEach(task => delete allTasks[task]);
+
+        setBoard(previousBoard => ({
+            ...previousBoard,
+            columnsOrder: columnsOrder,
+            columns: restColumns,
+            tasks: allTasks
+        }));
+
+        const deletedSuccessfully = await boardController.deleteColumn(columnID);
+        if (!deletedSuccessfully) {
+            setBoard(backupBoard);
+        }
+    }
+
     const setDeletingTaskState = (taskID, isDeleting) => {
         setBoard(previousBoard => ({
             ...previousBoard,
@@ -106,6 +142,19 @@ export default ({children}) => {
                 ...previousBoard.tasks,
                 [taskID]: {
                     ...previousBoard.tasks[taskID],
+                    isDeleting: isDeleting
+                }
+            }
+        }));
+    }
+
+    const setDeletingTaskColumn = (columnsID, isDeleting) => {
+        setBoard(previousBoard => ({
+            ...previousBoard,
+            columns: {
+                ...previousBoard.columns,
+                [columnsID]: {
+                    ...previousBoard.columns[columnsID],
                     isDeleting: isDeleting
                 }
             }
@@ -120,7 +169,10 @@ export default ({children}) => {
         editColumnName,
         moveTask,
         deleteTask,
-        setDeletingTaskState
+        moveColumn,
+        deleteColumn,
+        setDeletingTaskState,
+        setDeletingTaskColumn
     }
 
     return <BoardStoreContext.Provider value={boardContext}>{children}</BoardStoreContext.Provider>;

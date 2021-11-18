@@ -1,28 +1,52 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import DeleteIcon from '../images/delete_icon.svg';
-import {Droppable} from 'react-beautiful-dnd';
-import {TrashCanContext} from "../context-store/trash-can-context.js";
+import {DroppableContainer} from '../drag-drop-components/DroppableContainer.js';
+import {TrashCanContext} from '../context-store/trash-can-context.js';
 
 import './TrashCan.css';
 
 
 export const TrashCan = () => {
-    const {trashCanActive} = useContext(TrashCanContext);
+    const {trashCanActive, deletingType} = useContext(TrashCanContext);
+    const [showColumnTrash, setShowColumnTrash] = useState(false);
+    const [showTaskTrash, setShowTaskTrash] = useState(false);
+
+    useEffect(() => {
+        if (trashCanActive) {
+            if (deletingType === 'task') {
+                setShowTaskTrash(true);
+                setShowColumnTrash(false);
+            } else {
+                setShowTaskTrash(false);
+                setShowColumnTrash(true);
+            }
+        } else {
+            setShowTaskTrash(false);
+            setShowColumnTrash(false);
+        }
+    }, [deletingType, trashCanActive])
 
     return (
         <>
-            <Droppable droppableId='trash-can-container'>
-                {(provided) => (
-                    <div
-                        ref={provided.innerRef}
-                        {...provided.droppableProps}
-                        className={`trash-can ${trashCanActive ? 'show' : 'hide'}`}>
+            <DroppableContainer
+                droppableId='trash-can-column'
+                direction='horizontal'
+                type='column'
+                className={`trash-can ${showColumnTrash ? 'show' : 'hide'}`}>
 
-                        <DeleteIcon/>
-                        {provided.placeholder}
-                    </div>
-                )}
-            </Droppable>
+                <DeleteIcon/>
+
+            </DroppableContainer>
+
+            <DroppableContainer
+                droppableId='trash-can-task'
+                direction='horizontal'
+                type='task'
+                className={`trash-can ${showTaskTrash ? 'show' : 'hide'}`}>
+
+                <DeleteIcon/>
+
+            </DroppableContainer>
         </>
     );
 }
