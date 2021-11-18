@@ -1,6 +1,5 @@
 .board__add-column {
     width: 250px;
-    padding: 11px;
     background: transparent;
     border: 2px solid #fdfdfd;
     color: #fdfdfd;
@@ -11,6 +10,7 @@
     background: #efefef;
     border: none;
     box-shadow: none;
+    padding: 11px;
 }
 
 .board__add-column-button {
@@ -18,6 +18,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 45px;
     cursor: pointer;
     font-weight: 600;
 }

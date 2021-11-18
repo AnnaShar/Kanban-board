@@ -51,14 +51,14 @@ export const BoardAddColumnButton = () => {
     return (
         <>
             <div
-                className={'board-column board__add-column ' + (isAdding ? 'isAdding' : '')}>
+                className={'board-column board__add-column ' + (isAdding ? 'isAdding' : '')}
+                // onClick={() => setIsAdding(!isAdding)}
+            >
 
                 {!isAdding &&
                 <div
                     className='board__add-column-button'
-                    onClick={() => {
-                        setIsAdding(!isAdding)
-                    }}>
+                     onClick={() => setIsAdding(!isAdding)}>
                     + {texts.addColumnText.button[language.value]}
                 </div>}
 
