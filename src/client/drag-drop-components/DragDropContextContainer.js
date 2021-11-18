@@ -5,7 +5,7 @@ import {BoardStoreContext} from '../context-store/board-store-context.js';
 
 export const DragDropContextContainer = ({children, moveTask, deleteTask, moveColumn, deleteColumn}) => {
     const {showTrashCan, hideTrashCan, setDeletingType} = useContext(TrashCanContext);
-    const {setDeletingTaskState, setDeletingTaskColumn} = useContext(BoardStoreContext);
+    const {setDeletingStateTask, setDeletingStateColumn} = useContext(BoardStoreContext);
 
     const onDragStart = ({type}) => {
         showTrashCan();
@@ -15,7 +15,7 @@ export const DragDropContextContainer = ({children, moveTask, deleteTask, moveCo
     const onDragUpdate = (result) => {
         const {destination, draggableId, type} = result;
         if (!destination) {
-            setDeletingTaskState(draggableId, false);
+            clearVisualEffects(draggableId, type)
             return;
         }
         switch (type) {
@@ -30,7 +30,6 @@ export const DragDropContextContainer = ({children, moveTask, deleteTask, moveCo
     }
 
     const onDragEnd = (result) => {
-        console.log(result)
         hideTrashCan();
 
         const {draggableId, source, destination, type} = result;
@@ -55,17 +54,17 @@ export const DragDropContextContainer = ({children, moveTask, deleteTask, moveCo
 
     const updateTask = (draggableId, destination) => {
         if (destination.droppableId === 'trash-can-task') {
-            setDeletingTaskState(draggableId, true);
+            setDeletingStateTask(draggableId, true);
         } else {
-            setDeletingTaskState(draggableId, false);
+            setDeletingStateTask(draggableId, false);
         }
     }
 
     const updateColumn = (draggableId, destination) => {
         if (destination.droppableId === 'trash-can-column') {
-            setDeletingTaskColumn(draggableId, true);
+            setDeletingStateColumn(draggableId, true);
         } else {
-            setDeletingTaskColumn(draggableId, false);
+            setDeletingStateColumn(draggableId, false);
         }
     }
 
@@ -86,6 +85,18 @@ export const DragDropContextContainer = ({children, moveTask, deleteTask, moveCo
         } else {
             moveColumn(draggableId, source.index, destination.index);
         }
+    }
+
+    const clearVisualEffects = (draggableId, type) => {
+        switch (type) {
+            case 'task':
+                setDeletingStateTask(draggableId, false);
+                break;
+            case 'column':
+                setDeletingStateColumn(draggableId, false);
+                break;
+        }
+
     }
 
     return (

@@ -135,7 +135,7 @@ export default ({children}) => {
         }
     }
 
-    const setDeletingTaskState = (taskID, isDeleting) => {
+    const setDeletingStateTask = (taskID, isDeleting) => {
         setBoard(previousBoard => ({
             ...previousBoard,
             tasks: {
@@ -148,7 +148,7 @@ export default ({children}) => {
         }));
     }
 
-    const setDeletingTaskColumn = (columnsID, isDeleting) => {
+    const setDeletingStateColumn = (columnsID, isDeleting) => {
         setBoard(previousBoard => ({
             ...previousBoard,
             columns: {
@@ -171,8 +171,8 @@ export default ({children}) => {
         deleteTask,
         moveColumn,
         deleteColumn,
-        setDeletingTaskState,
-        setDeletingTaskColumn
+        setDeletingStateTask,
+        setDeletingStateColumn
     }
 
     return <BoardStoreContext.Provider value={boardContext}>{children}</BoardStoreContext.Provider>;
