@@ -1,23 +1,25 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {EditableText} from '../service-components/EditableText.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
 import SettingIcon from '../images/settings_icon.svg';
 
 import './BoardHeader.css';
 
-export const BoardHeader = (props) => {
+
+export const BoardHeader = ({name}) => {
     const {settingsIsOpen, openSettings} = useContext(UserSettingsContext);
-    const [headerText, setHeaderText] = useState(props.name);
+    const {changeBoardName} = useContext(BoardStoreContext);
 
     const editBoardName = (text) => {
-        setHeaderText(text);
+        changeBoardName(text);
     };
 
     return (
-        <div className="board__header">
+        <div className='board__header'>
             <EditableText
                 className='board-header'
-                text={headerText}
+                text={name}
                 saveChanges={editBoardName}
             />
 

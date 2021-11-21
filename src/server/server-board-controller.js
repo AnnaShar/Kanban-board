@@ -6,7 +6,6 @@ const filePath = config['tasksFilePath'];
 let board = null;
 
 const getBoard = () => {
-    //throw new RequestError(404, `AAAAAA it's not working.`);
     if (!board) {
         try {
             board = getDataFromFile(filePath);
@@ -47,8 +46,15 @@ const getBoardInfo = () => {
     }
 }
 
+const changeBoardName = ({boardName}) => {
+    const board = getBoard();
+    board.name = boardName;
+
+    updateBoardFile();
+    return true;
+}
+
 const moveTask = (taskID, {source, destination}) => {
-    // throw new RequestError(404, `Task with id ${taskID} does not found.`);
     const board = getBoard();
     let task = board.tasks[taskID];
 
@@ -148,6 +154,18 @@ const deleteColumn = (columnID) => {
     return true;
 }
 
+const changeColumnName = (columnID, {columnName}) => {
+    const board = getBoard();
+    let column = board.columns[columnID];
+
+    if (!column) throw new RequestError(404, `Column with id ${columnID} does not found.`);
+
+    board.columns[columnID].name = columnName;
+
+    updateBoardFile();
+    return true;
+}
+
 const updateBoardFile = () => {
     const board = getBoard();
 
@@ -188,5 +206,7 @@ export default {
     addTask,
     addColumn,
     moveColumn,
-    deleteColumn
+    deleteColumn,
+    changeColumnName,
+    changeBoardName
 }

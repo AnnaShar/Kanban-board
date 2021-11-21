@@ -56,6 +56,14 @@ app.get('/api/board', (req, res)=>{
     });
 });
 
+app.patch('/api/board/edit', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    handleResponse(req, res, () => {
+        return boardController.changeBoardName(req.body);
+    });
+});
+
 app.patch('/api/board/tasks/move/:uid', (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
@@ -98,6 +106,15 @@ app.patch('/api/board/columns/move/:uid', (req, res) => {
         return boardController.moveColumn(id, req.body);
     });
 });
+
+app.patch('/api/board/columns/edit/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.changeColumnName(id, req.body);
+    });
+})
 
 app.delete('/api/board/columns/delete/:uid', (req, res) => {
     if (!req.body) return res.sendStatus(400);

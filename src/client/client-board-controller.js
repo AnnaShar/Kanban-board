@@ -57,6 +57,18 @@ const deleteColumn = async (columnID) => {
     });
 }
 
+const changeColumnName = async (columnID, columnName) => {
+    return handleRequest(async () => {
+        return await serverRequest.changeColumnName(columnID, columnName);
+    });
+}
+
+const changeBoardName = async (boardName) => {
+    return handleRequest(async () => {
+        return await serverRequest.changeBoardName(boardName);
+    });
+}
+
 export default {
     getBoard,
     addColumn,
@@ -64,5 +76,7 @@ export default {
     moveTask,
     deleteTask,
     moveColumn,
-    deleteColumn
+    deleteColumn,
+    changeColumnName,
+    changeBoardName
 }

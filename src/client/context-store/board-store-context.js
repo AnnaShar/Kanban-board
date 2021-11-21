@@ -46,19 +46,36 @@ export default ({children}) => {
         }
     };
 
-    const editColumnName = (columnID, columnName) => {
-        const newBoard = {
-            ...board,
+    const changeColumnName = async (columnID, columnName) => {
+        const backupBoard = {...board};
+        setBoard(previousBoard=>({
+            ...previousBoard,
             columns: {
-                ...board.columns,
+                ...previousBoard.columns,
                 [columnID]: {
-                    ...board.columns[columnID],
+                    ...previousBoard.columns[columnID],
                     name: columnName
                 }
             }
-        };
+        }));
 
-        setBoard(newBoard);
+        const changedSuccessfully = await boardController.changeColumnName(columnID, columnName);
+        if (!changedSuccessfully) {
+            setBoard(backupBoard);
+        }
+    }
+
+    const changeBoardName = async (boardName) => {
+        const backupBoard = {...board};
+        setBoard(previousBoard=> ({
+            ...previousBoard,
+            name: boardName
+        }));
+
+        const changedSuccessfully = await boardController.changeBoardName(boardName);
+        if (!changedSuccessfully) {
+            setBoard(backupBoard);
+        }
     }
 
     const moveTask = async (taskID, source, destination) => {
@@ -166,7 +183,8 @@ export default ({children}) => {
         setBoard,
         addColumn,
         addTask,
-        editColumnName,
+        changeColumnName,
+        changeBoardName,
         moveTask,
         deleteTask,
         moveColumn,

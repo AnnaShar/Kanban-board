@@ -95,6 +95,24 @@ const deleteColumn = async (columnID) => {
     });
 };
 
+const changeColumnName = async (columnID, columnName) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/columns/edit/${columnID}`, {
+            method: 'PATCH',
+            body: JSON.stringify({columnName: columnName})
+        });
+    });
+};
+
+const changeBoardName = async (boardName) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/edit`, {
+            method: 'PATCH',
+            body: JSON.stringify({boardName: boardName})
+        });
+    });
+};
+
 export default {
     getBoard,
     getAllTasks,
@@ -106,5 +124,7 @@ export default {
     deleteTask,
     addColumn,
     moveColumn,
-    deleteColumn
+    deleteColumn,
+    changeColumnName,
+    changeBoardName
 }
