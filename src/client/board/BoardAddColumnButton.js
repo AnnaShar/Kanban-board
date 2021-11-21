@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
-import {ToastContainer, toast} from 'react-toastify';
+import {showErrorMessage} from '../utils/notifier.js';
 import texts from '../constants/texts.js';
 
 import './BoardAddColumnButton.css';
@@ -35,16 +35,7 @@ export const BoardAddColumnButton = () => {
             setColumnName('');
             setIsAdding(false);
         } else {
-            toast.error('Enter name of the column', {
-                position: "top-center",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored"
-            });
+            showErrorMessage('Enter name of the column');
         }
     }
 
