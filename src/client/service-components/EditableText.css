@@ -1,5 +1,5 @@
 .editable-text__text {
-    cursor: pointer;
+    cursor: url("/src/client/images/edit-cursor.png") 19 16, pointer;
 }
 
 .editable-text__input{
