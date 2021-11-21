@@ -4,13 +4,10 @@ const url = 'http://localhost:8080/api/board';
 
 const handleRequest = async (handler) => {
     const response = await handler();
-    // console.log('response handled')
     if (!response.ok) {
-        // console.log('response not ok')
         const errorMessage = await response.text();
         throw new RequestError(response.status, errorMessage);
     } else {
-        // console.log('not else')
         return await response.json();
     }
 };
