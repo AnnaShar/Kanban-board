@@ -41,5 +41,15 @@ export default {
             eng: 'Choose language',
             ru: 'Выберите язык интерфейса'
         }
+    },
+    errorMessages: {
+        default: {
+            eng: 'Something went wrong. Please, try again.',
+            ru: 'Что-то пошло не так. Пожалуйста, попробуйте снова.'
+        },
+        addColumn: {
+            eng: '',
+            ru: ''
+        }
     }
 }
