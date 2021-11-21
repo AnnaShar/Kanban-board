@@ -8,11 +8,16 @@ import './BoardHeader.css';
 
 
 export const BoardHeader = ({name}) => {
-    const {settingsIsOpen, openSettings} = useContext(UserSettingsContext);
+    const {toggleSettings} = useContext(UserSettingsContext);
     const {changeBoardName} = useContext(BoardStoreContext);
 
     const editBoardName = (text) => {
         changeBoardName(text);
+    };
+
+    const handleSettingsClick = (e) => {
+        e.preventDefault();
+        toggleSettings();
     };
 
     return (
@@ -25,7 +30,7 @@ export const BoardHeader = ({name}) => {
 
             <div className='board__settings-icon settings-icon'
                  id='setting-button'
-                 onClick={() => openSettings(true)}>
+                 onClick={handleSettingsClick}>
                 <SettingIcon
                     fill='white'/>
             </div>

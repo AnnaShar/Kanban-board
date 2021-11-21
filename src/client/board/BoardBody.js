@@ -2,14 +2,16 @@ import React, {useContext} from 'react';
 import {BoardColumn} from '../board-column/BoardColumn.js';
 import {BoardSettings} from '../board-settings/BoardSettings.js';
 import {BoardAddColumnButton} from './BoardAddColumnButton.js';
-import {BoardStoreContext} from '../context-store/board-store-context.js';
 import {DroppableContainer} from '../drag-drop-components/DroppableContainer.js';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
+import {UserSettingsContext} from '../context-store/user-settings-context.js';
 
 import './BoardBody.css';
 
 
 export const BoardBody = () => {
     const {board} = useContext(BoardStoreContext);
+    const {settingsIsOpen} = useContext(UserSettingsContext);
 
     const columns = board.columnsOrder;
 
@@ -40,7 +42,7 @@ export const BoardBody = () => {
 
             </div>
 
-            <BoardSettings/>
+            {settingsIsOpen && <BoardSettings/>}
         </div>
     );
 }
