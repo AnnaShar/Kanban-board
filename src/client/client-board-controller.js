@@ -68,6 +68,11 @@ const changeBoardName = async (boardName) => {
         return await serverRequest.changeBoardName(boardName);
     });
 }
+const changeTaskName = async (taskID, taskName) => {
+    return handleRequest(async () => {
+        return await serverRequest.changeTaskName(taskID, taskName);
+    });
+}
 
 export default {
     getBoard,
@@ -78,5 +83,6 @@ export default {
     moveColumn,
     deleteColumn,
     changeColumnName,
-    changeBoardName
+    changeBoardName,
+    changeTaskName
 }

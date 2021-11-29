@@ -90,6 +90,15 @@ app.post('/api/board/tasks/add/:uid', (req, res) => {
     });
 });
 
+app.patch('/api/board/tasks/edit/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.changeTaskName(id, req.body);
+    });
+});
+
 app.post('/api/board/columns/add', (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
@@ -114,7 +123,7 @@ app.patch('/api/board/columns/edit/:uid', (req, res) => {
     handleResponse(req, res, () => {
         return boardController.changeColumnName(id, req.body);
     });
-})
+});
 
 app.delete('/api/board/columns/delete/:uid', (req, res) => {
     if (!req.body) return res.sendStatus(400);

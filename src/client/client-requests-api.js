@@ -112,6 +112,14 @@ const changeBoardName = async (boardName) => {
         });
     });
 };
+const changeTaskName = async (taskID, taskName) => {
+    return handleRequest(async () => {
+        return await fetch(`${url}/tasks/edit/${taskID}`, {
+            method: 'PATCH',
+            body: JSON.stringify({taskName: taskName})
+        });
+    });
+};
 
 export default {
     getBoard,
@@ -126,5 +134,6 @@ export default {
     moveColumn,
     deleteColumn,
     changeColumnName,
-    changeBoardName
+    changeBoardName,
+    changeTaskName
 }

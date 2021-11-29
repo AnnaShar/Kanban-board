@@ -166,6 +166,18 @@ const changeColumnName = (columnID, {columnName}) => {
     return true;
 }
 
+const changeTaskName = (taskID, {taskName}) => {
+    const board = getBoard();
+    let task = board.tasks[taskID];
+
+    if (!task) throw new RequestError(404, `Task with id ${taskID} does not found.`);
+
+    board.tasks[taskID].name = taskName;
+
+    updateBoardFile();
+    return true;
+}
+
 const updateBoardFile = () => {
     const board = getBoard();
 
@@ -208,5 +220,6 @@ export default {
     moveColumn,
     deleteColumn,
     changeColumnName,
-    changeBoardName
+    changeBoardName,
+    changeTaskName
 }

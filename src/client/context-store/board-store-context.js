@@ -48,7 +48,7 @@ export default ({children}) => {
 
     const changeColumnName = async (columnID, columnName) => {
         const backupBoard = {...board};
-        setBoard(previousBoard=>({
+        setBoard(previousBoard => ({
             ...previousBoard,
             columns: {
                 ...previousBoard.columns,
@@ -67,7 +67,7 @@ export default ({children}) => {
 
     const changeBoardName = async (boardName) => {
         const backupBoard = {...board};
-        setBoard(previousBoard=> ({
+        setBoard(previousBoard => ({
             ...previousBoard,
             name: boardName
         }));
@@ -115,6 +115,25 @@ export default ({children}) => {
             setBoard(backupBoard);
         }
     }
+
+    const changeTaskName = async (taskID, name) => {
+        const backupBoard = {...board};
+
+        setBoard(previousBoard => ({
+            ...previousBoard,
+            tasks: {
+                ...previousBoard.tasks,
+                [taskID]: {
+                    ...previousBoard.tasks[taskID],
+                    name: name
+                }
+            }
+        }));
+        const changedSuccessfully = await boardController.changeTaskName(taskID, name);
+        if (!changedSuccessfully) {
+            setBoard(backupBoard);
+        }
+    };
 
     const moveColumn = async (columnID, sourceIndex, destinationIndex) => {
         const backupBoard = {...board};
@@ -183,6 +202,7 @@ export default ({children}) => {
         setBoard,
         addColumn,
         addTask,
+        changeTaskName,
         changeColumnName,
         changeBoardName,
         moveTask,
