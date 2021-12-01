@@ -11,7 +11,7 @@ TODO (details):
 1) Trash can animation more fancy
 2) Custom error colors
 3) Scroll color from theme
-4) Hide "Add task" on outside click
+4) Hide "Add task" on outside click +
 5) Size of textarea while editing task by size of the task
 6) Extract some functions from Editable components
 7) Move styles from index.css

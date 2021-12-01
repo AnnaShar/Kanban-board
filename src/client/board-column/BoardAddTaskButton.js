@@ -1,4 +1,4 @@
-import React, {useState, useRef, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import texts from '../constants/texts.js';
@@ -44,6 +44,7 @@ export const BoardAddTaskButton = ({columnID}) => {
                     value={taskName}
                     onChange={updateTaskName}
                     onKeyPress={keyPressedHandle}
+                    onBlur={()=>setIsAdding(false)}
                 />
             </div>}
         </>
