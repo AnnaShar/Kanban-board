@@ -60,3 +60,7 @@
 .button-cancel{
     background: white;
 }
+
+input:focus{
+    outline: none;
+}

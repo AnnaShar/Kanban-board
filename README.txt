@@ -14,5 +14,5 @@ TODO (details):
 4) Hide "Add task" on outside click +
 5) Size of textarea while editing task by size of the task
 6) Extract some functions from Editable components
-7) Move styles from index.css
+7) Move styles from index.css +
 8) Make adding task similar to adding column +
