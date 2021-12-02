@@ -1,7 +1,7 @@
 import React, {useContext, useRef, useState} from 'react';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {showErrorMessage} from '../utils/notifier.js';
-import {ToastContainer} from 'react-toastify';
+import {ToastContainer, Slide} from 'react-toastify';
 import useOnClickOutside from 'use-onclickoutside';
 
 import './TextToAdd.css';
@@ -84,7 +84,9 @@ export const TextToAdd = ({saveItem, itemTexts, showError = false, type}) => {
                     </div>)}
             < /div>
 
-            <ToastContainer/>
+            <ToastContainer
+                transition={Slide}
+            />
         </>
     );
 }

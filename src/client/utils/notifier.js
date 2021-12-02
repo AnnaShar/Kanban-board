@@ -1,14 +1,15 @@
 import {toast} from 'react-toastify';
+import './notifier.css';
 
 export const showErrorMessage = (message) => {
-    toast.error(message, {
+    toast(message, {
         position: "top-center",
         autoClose: 2000,
-        hideProgressBar: false,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored"
+        icon: false
     });
 }
