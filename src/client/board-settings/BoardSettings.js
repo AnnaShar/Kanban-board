@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
+import React, {useContext, useRef} from 'react';
 import {CirclePicker} from 'react-color';
 import Select from 'react-select';
-import {useDetectClickOutside} from 'react-detect-click-outside';
+import useOnClickOutside from 'use-onclickoutside';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import themes from '../constants/themes.js';
 import languages from '../constants/languages.js';
@@ -11,7 +11,8 @@ import './BoardSettings.css';
 
 export const BoardSettings = () => {
     const {theme, saveTheme, language, saveLanguage, closeSettings} = useContext(UserSettingsContext);
-    const closingRef = useDetectClickOutside({onTriggered: closeSettings});
+    const closingRef = useRef();
+    useOnClickOutside(closingRef, closeSettings);
 
     const handleColorChange = (color) => {
         saveTheme(themes[color.hex]);
