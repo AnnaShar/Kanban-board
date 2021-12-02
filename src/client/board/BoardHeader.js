@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {EditableText} from '../service-components/EditableText.js';
+import {EditableInput} from '../service-components/EditableInput.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import SettingIcon from '../images/settings_icon.svg';
@@ -22,7 +22,7 @@ export const BoardHeader = ({name}) => {
 
     return (
         <div className='board__header'>
-            <EditableText
+            <EditableInput
                 className='board-header'
                 text={name}
                 saveChanges={editBoardName}

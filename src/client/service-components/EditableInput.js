@@ -1,8 +1,8 @@
 import React, {useState, useContext} from 'react';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
-import './EditableText.css';
+import './EditableInput.css';
 
-export const EditableText = (props) => {
+export const EditableInput = (props) => {
     const {theme} = useContext(UserSettingsContext);
     const [isEdit, setIsEdit] = useState(false);
     const [isInputEmpty, setIsInputEmpty] = useState(false);
