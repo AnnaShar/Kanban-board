@@ -4,10 +4,7 @@ import {Board} from './board/Board.js';
 import {ErrorPage} from './error/ErrorPage.js';
 import {BoardProvider} from './board/BoardProvider.js';
 
-import './index.css';
-
-
-function App() {
+const App = () => {
     return (
         <Switch>
             <Route exact path='/'>
