@@ -20,7 +20,7 @@ export const TextToAdd = ({saveItem, itemTexts, showError = false, type}) => {
         setText(target.value);
     };
 
-    const keyPressedHandle = async ({key}) => {
+    const keyPressedHandle = ({key}) => {
         if (key === 'Enter' && text) {
             handleAdding();
         }
@@ -29,8 +29,7 @@ export const TextToAdd = ({saveItem, itemTexts, showError = false, type}) => {
     const handleAdding = () => {
         if (text) {
             saveItem(text);
-            setText('');
-            setIsAdding(false);
+            handleCancel();
         } else if (showError) {
             showErrorMessage(itemTexts.error[language.value]);
         }
