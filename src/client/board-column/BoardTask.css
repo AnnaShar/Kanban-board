@@ -16,7 +16,7 @@
     padding: 10px 3px;
 }
 
-.board-column__task.isDeleting{
+.board-column__task--deleting{
     background: #d2537a;
     color: white;
 }

@@ -13,7 +13,7 @@
     box-sizing: border-box;
     width: 100%;
 }
-.add-item-container.isAdding {
+.add-item-container--adding {
     border: none;
     box-shadow: none;
     padding: 11px;

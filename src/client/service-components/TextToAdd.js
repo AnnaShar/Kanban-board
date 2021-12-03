@@ -44,7 +44,8 @@ export const TextToAdd = ({saveItem, itemTexts, showError = false, type}) => {
     return (
         <>
             <div
-                className={`add-item-container add-${type}-container  ${isAdding ? 'isAdding' : ''}`}>
+                className={`add-item-container add-${type}-container  
+                ${isAdding ? `add-item-container--adding add-${type}-container--adding` : ''}`}>
 
                 {!isAdding ? (
                         <div

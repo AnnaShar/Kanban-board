@@ -7,7 +7,7 @@
     width: 300px;
     min-width: 200px;
     height: fit-content;
-    max-height: -webkit-fill-available;
+    max-height: fit-content;
     margin: 10px;
     border-radius: 3px;
     background: #ebecf0;
@@ -31,7 +31,7 @@
     margin-bottom: 10px;
 }
 
-.board-column.isDeleting{
+.board-column--deleting{
     background: #d2537a;
     color: white;
 }

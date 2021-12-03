@@ -10,9 +10,11 @@
     box-shadow: 0 1px 5px #fdfdfd;
 }
 
-.add-column-container.isAdding {
-    padding: 16px 11px;
+.add-column-container--adding {
+    padding: 15px 11px;
     background: #ebecf0;
+    box-shadow: none;
+    border: none;
 }
 
 .add-column-button {
