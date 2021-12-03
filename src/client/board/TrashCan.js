@@ -22,7 +22,7 @@ export const TrashCan = () => {
                 droppableId='trash-can-column'
                 direction='horizontal'
                 type='column'
-                className={`trash-can ${showColumnTrash ? 'show' : 'hide'}`}>
+                className={`trash-can ${showColumnTrash ? 'trash-can--shown' : 'trash-can--hidden'}`}>
 
                 <DeleteIcon/>
 
@@ -32,7 +32,7 @@ export const TrashCan = () => {
                 droppableId='trash-can-task'
                 direction='horizontal'
                 type='task'
-                className={`trash-can ${showTaskTrash ? 'show' : 'hide'}`}>
+                className={`trash-can ${showTaskTrash ? 'trash-can--shown' : 'trash-can--hidden'}`}>
 
                 <DeleteIcon/>
 

@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    /*top: 0;*/
     bottom: 0;
     width: 100%;
     height: 52px;
@@ -13,12 +12,12 @@
     transition: visibility 0.2s, opacity 0.2s linear;
 }
 
-.trash-can.show{
+.trash-can--shown{
     visibility: visible;
     opacity: 1;
 }
 
-.trash-can.hide{
+.trash-can--hidden{
     visibility: hidden;
     opacity: 0;
 }
@@ -28,12 +27,12 @@
     left: 0;
 }
 
-.trash-can.hide svg {
+.trash-can--hidden svg {
     position: absolute;
     left: 0;
     fill: #ffffff;
 }
-.trash-can.show svg {
+.trash-can--shown svg {
     position: absolute;
     left: 0;
     fill: #d2537a;
