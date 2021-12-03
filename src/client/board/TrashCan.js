@@ -12,18 +12,8 @@ export const TrashCan = () => {
     const [showTaskTrash, setShowTaskTrash] = useState(false);
 
     useEffect(() => {
-        if (trashCanActive) {
-            if (deletingType === 'task') {
-                setShowTaskTrash(true);
-                setShowColumnTrash(false);
-            } else {
-                setShowTaskTrash(false);
-                setShowColumnTrash(true);
-            }
-        } else {
-            setShowTaskTrash(false);
-            setShowColumnTrash(false);
-        }
+        setShowTaskTrash(trashCanActive && deletingType === 'task');
+        setShowColumnTrash(trashCanActive && deletingType === 'column');
     }, [deletingType, trashCanActive])
 
     return (
