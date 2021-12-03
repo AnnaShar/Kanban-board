@@ -23,7 +23,7 @@ export default ({children}) => {
 
     const [theme, setTheme] = useState(getTheme());
     const [language, setLanguage] = useState(getLanguage());
-    const [settingsIsOpen, setSettingsIsOpen] = useState(false);
+    const [isSettingsMenuOpen, setIsSettingsMenuOpen] = useState(false);
 
     const saveTheme = (theme) => {
         setTheme(theme)
@@ -36,11 +36,11 @@ export default ({children}) => {
     };
 
     const toggleSettings = () => {
-        setSettingsIsOpen(previous=> !previous);
+        setIsSettingsMenuOpen(previous=> !previous);
     };
 
     const closeSettings = () => {
-        setSettingsIsOpen(false);
+        setIsSettingsMenuOpen(false);
     };
 
     const settings = {
@@ -48,7 +48,7 @@ export default ({children}) => {
         saveTheme,
         language,
         saveLanguage,
-        settingsIsOpen,
+        isSettingsMenuOpen,
         closeSettings,
         toggleSettings
     };

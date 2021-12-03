@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {BoardHeader} from './BoardHeader.js';
 import {BoardBody} from './BoardBody.js';
 import {BoardFooter} from './BoardFooter.js';
@@ -11,15 +11,10 @@ import './Board.css';
 export const Board = () => {
     const {board, loadBoardData, moveTask, deleteTask, moveColumn, deleteColumn} = useContext(BoardStoreContext);
     const {theme} = useContext(UserSettingsContext);
-    const [settingsOpen, setSettingsOpen] = useState(false);
 
     useEffect(async () => {
         await loadBoardData()
     }, []);
-
-    const openSettings = () => {
-        setSettingsOpen(!settingsOpen);
-    }
 
     const boardStyles = {
         background: 'linear-gradient(135deg,' + theme.base + ', transparent)'
@@ -39,9 +34,8 @@ export const Board = () => {
                     <BoardHeader
                         name={board.name}
                     />
-                    <BoardBody
-                        settingsIsOpen={settingsOpen}
-                    />
+
+                    <BoardBody/>
 
                     <BoardFooter/>
 

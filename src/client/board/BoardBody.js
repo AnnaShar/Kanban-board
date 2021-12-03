@@ -11,7 +11,7 @@ import './BoardBody.css';
 
 export const BoardBody = () => {
     const {board} = useContext(BoardStoreContext);
-    const {settingsIsOpen} = useContext(UserSettingsContext);
+    const {isSettingsMenuOpen} = useContext(UserSettingsContext);
 
     const columns = board.columnsOrder;
 
@@ -42,7 +42,7 @@ export const BoardBody = () => {
 
             </div>
 
-            {settingsIsOpen && <BoardSettings/>}
+            {isSettingsMenuOpen && <BoardSettings/>}
         </div>
     );
 }
