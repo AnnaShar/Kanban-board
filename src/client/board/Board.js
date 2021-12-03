@@ -5,18 +5,16 @@ import {BoardFooter} from './BoardFooter.js';
 import {DragDropContextContainer} from '../drag-drop-components/DragDropContextContainer.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
-import boardController from '../client-board-controller.js';
 
 import './Board.css';
 
 export const Board = () => {
-    const {board, setBoard, moveTask, deleteTask, moveColumn, deleteColumn} = useContext(BoardStoreContext);
+    const {board, loadBoardData, moveTask, deleteTask, moveColumn, deleteColumn} = useContext(BoardStoreContext);
     const {theme} = useContext(UserSettingsContext);
     const [settingsOpen, setSettingsOpen] = useState(false);
 
     useEffect(async () => {
-        const boardData = await boardController.getBoard();
-        setBoard(boardData);
+        await loadBoardData()
     }, []);
 
     const openSettings = () => {

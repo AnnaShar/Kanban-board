@@ -6,6 +6,12 @@ export const BoardStoreContext = React.createContext(null);
 export default ({children}) => {
     const [board, setBoard] = useState(null);
 
+    const loadBoardData = async ()=> {
+        const boardData = await boardController.getBoard();
+        setBoard(boardData);
+        return board;
+    }
+
     const addColumn = async (columnName) => {
         const newColumn = await boardController.addColumn(columnName);
 
@@ -199,7 +205,7 @@ export default ({children}) => {
 
     const boardContext = {
         board,
-        setBoard,
+        loadBoardData,
         addColumn,
         addTask,
         changeTaskName,
