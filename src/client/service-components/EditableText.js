@@ -9,7 +9,7 @@ import './EditableText.css';
 export const EditableText = ({value, saveChanges, editButton = false, className, multipleRows=false}) => {
     const {theme} = useContext(UserSettingsContext);
     const [isEdit, setIsEdit] = useState(false);
-    const [isInputEmpty, setIsInputEmpty] = useState(false);
+    const [hasErrors, setHasErrors] = useState(false);
     const [text, setText] = useState(value);
     const [previousText, setPreviousText] = useState(value);
     const [hover, setHover] = useState(false);
@@ -20,18 +20,18 @@ export const EditableText = ({value, saveChanges, editButton = false, className,
 
     const updateText = ({target}) => {
         setText(target.value);
-        setIsInputEmpty(target.value==='');
+        setHasErrors(target.value==='');
     };
 
     const handleKeyDown = (e) => {
         if (e.key === Keys.Enter) {
             setIsEdit(false);
 
-            if (!isInputEmpty) {
+            if (!hasErrors) {
                 saveText();
             } else {
                 setText(previousText);
-                setIsInputEmpty(false);
+                setHasErrors(false);
             }
         }
     };
@@ -39,11 +39,11 @@ export const EditableText = ({value, saveChanges, editButton = false, className,
     const handleBlur = () => {
         setIsEdit(false);
 
-        if (!isInputEmpty) {
+        if (!hasErrors) {
             saveText();
         } else {
             setText(previousText);
-            setIsInputEmpty(false);
+            setHasErrors(false);
         }
     };
 
@@ -88,7 +88,7 @@ export const EditableText = ({value, saveChanges, editButton = false, className,
             {isEdit && (multipleRows ?
                     <textarea
                         autoFocus
-                        className={`editable-text__textarea editable-${className}__textarea ${isInputEmpty ? 'error-input' : ''}`}
+                        className={`editable-text__textarea editable-${className}__textarea ${hasErrors ? 'error-input' : ''}`}
                         style={{borderColor: theme.base}}
                         value={text}
                         onChange={updateText}
@@ -99,7 +99,7 @@ export const EditableText = ({value, saveChanges, editButton = false, className,
                     :
                     <input
                         autoFocus
-                        className={`editable-text__input editable-${className}__input ${isInputEmpty ? 'error-input' : ''}`}
+                        className={`editable-text__input editable-${className}__input ${hasErrors ? 'error-input' : ''}`}
                         type='text'
                         style={{borderColor: theme.base}}
                         value={text}
