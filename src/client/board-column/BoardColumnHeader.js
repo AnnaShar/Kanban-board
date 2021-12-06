@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
-import {EditableInput} from '../service-components/EditableInput.js';
+import {EditableText} from '../service-components/EditableText.js';
 
 import './BoardColumnHeader.css';
 
@@ -14,11 +14,12 @@ export const BoardColumnHeader = ({id, name}) => {
 
     return (
         <div className='board-column__header column-header'>
-           <EditableInput
-               className='column-header'
-               text={name}
-               saveChanges={editName}
-           />
+
+            <EditableText
+                className='column-header'
+                value={name}
+                saveChanges={editName}
+            />
         </div>
     );
 }

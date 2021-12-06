@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
-import {EditableInput} from '../service-components/EditableInput.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import {IDs} from '../constants/constants.js';
+import {EditableText} from "../service-components/EditableText.js";
 import SettingIcon from '../images/settings_icon.svg';
 
 import './BoardHeader.css';
@@ -23,9 +23,9 @@ export const BoardHeader = ({name}) => {
 
     return (
         <div className='board__header'>
-            <EditableInput
+            <EditableText
                 className='board-header'
-                text={name}
+                value={name}
                 saveChanges={editBoardName}
             />
 

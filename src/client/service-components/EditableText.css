@@ -1,4 +1,4 @@
-.editable-textarea__textarea{
+.editable-text__textarea {
     width: 100%;
     height: auto;
     box-sizing: border-box;
@@ -12,9 +12,17 @@
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
+    color: inherit;
 }
 
-.editable-textarea__text:hover > .edit-task-button{
+.editable-text__input{
+    text-align: inherit ;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+.editable-text__text:hover > .edit-task-button{
     visibility: visible;
     transition: 0.3s linear;
 }
@@ -31,4 +39,7 @@
     border-radius: 3px;
     cursor: pointer;
     opacity: 0.6;
+}
+.error-input{
+    border-color: #ff6a6a !important;
 }
