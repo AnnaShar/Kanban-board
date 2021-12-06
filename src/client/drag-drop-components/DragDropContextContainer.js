@@ -21,11 +21,11 @@ export const DragDropContextContainer = ({children, moveTask, deleteTask, moveCo
         }
         switch (type) {
             case ItemType.Column:
-                updateColumn(draggableId, destination);
+                setDeletingStateColumn(draggableId, destination.droppableId === IDs.TrashCanColumn);
                 break;
 
             case ItemType.Task:
-                updateTask(draggableId, destination);
+                setDeletingStateTask(draggableId, destination.droppableId === IDs.TrashCanTask);
                 break;
         }
     }
@@ -50,22 +50,6 @@ export const DragDropContextContainer = ({children, moveTask, deleteTask, moveCo
             case ItemType.Task:
                 dropTask(draggableId, source, destination);
                 break;
-        }
-    }
-
-    const updateTask = (draggableId, destination) => {
-        if (destination.droppableId === IDs.TrashCanTask) {
-            setDeletingStateTask(draggableId, true);
-        } else {
-            setDeletingStateTask(draggableId, false);
-        }
-    }
-
-    const updateColumn = (draggableId, destination) => {
-        if (destination.droppableId === IDs.TrashCanColumn) {
-            setDeletingStateColumn(draggableId, true);
-        } else {
-            setDeletingStateColumn(draggableId, false);
         }
     }
 
