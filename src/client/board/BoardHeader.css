@@ -18,19 +18,19 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    cursor: url("/src/client/images/edit-cursor.png") 19 16, pointer;
 }
 
-.board-header__input {
+.editable-board-header__input {
     background: transparent;
     border: none;
     box-shadow: 0 0 3px -3px white, 0 2px 0 0 white;
     padding: 0;
 }
 
-.board-header__input.error-input{
-    box-shadow: 0 0 3px -3px red, 0 2px 0 0 red;
+.editable-board-header__input.error-input{
+    box-shadow: 0 0 3px -3px #d2537a, 0 2px 0 0 #d2537a;
 }
-
 .board__settings-icon {
     position: absolute;
     right: 10px;
