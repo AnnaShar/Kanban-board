@@ -2,8 +2,10 @@ import React, {useState, useContext, useEffect} from 'react'
 import DeleteIcon from '../images/delete_icon.svg';
 import {DroppableContainer} from '../drag-drop-components/DroppableContainer.js';
 import {TrashCanContext} from '../context-store/trash-can-context.js';
+import {ItemType, Direction, IDs} from '../constants/constants.js';
 
 import './TrashCan.css';
+
 
 
 export const TrashCan = () => {
@@ -12,16 +14,16 @@ export const TrashCan = () => {
     const [showTaskTrash, setShowTaskTrash] = useState(false);
 
     useEffect(() => {
-        setShowTaskTrash(trashCanActive && deletingType === 'task');
-        setShowColumnTrash(trashCanActive && deletingType === 'column');
+        setShowTaskTrash(trashCanActive && deletingType === ItemType.Task);
+        setShowColumnTrash(trashCanActive && deletingType === ItemType.Column);
     }, [deletingType, trashCanActive])
 
     return (
         <>
             <DroppableContainer
-                droppableId='trash-can-column'
-                direction='horizontal'
-                type='column'
+                droppableId={IDs.TrashCanColumn}
+                direction={Direction.Horizontal}
+                type={ItemType.Column}
                 className={`trash-can ${showColumnTrash ? 'trash-can--shown' : 'trash-can--hidden'}`}>
 
                 <DeleteIcon/>
@@ -29,9 +31,9 @@ export const TrashCan = () => {
             </DroppableContainer>
 
             <DroppableContainer
-                droppableId='trash-can-task'
-                direction='horizontal'
-                type='task'
+                droppableId={IDs.TrashCanTask}
+                direction={Direction.Horizontal}
+                type={ItemType.Task}
                 className={`trash-can ${showTaskTrash ? 'trash-can--shown' : 'trash-can--hidden'}`}>
 
                 <DeleteIcon/>

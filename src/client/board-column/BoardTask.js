@@ -3,6 +3,7 @@ import {DraggableContainer} from '../drag-drop-components/DraggableContainer.js'
 import {EditableTextArea} from '../service-components/EditableTextArea.js';
 import {EditableText} from '../service-components/EditableText.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
+import {ItemType} from '../constants/constants.js';
 
 import './BoardTask.css';
 
@@ -20,7 +21,7 @@ export const BoardTask = ({task, index}) => {
         <DraggableContainer
             draggableId={task.id}
             index={index}
-            type='task'
+            type={ItemType.Task}
             className={`board-column__item board-column__task ${task.isDeleting ? 'board-column__task--deleting' : ''}`}>
 
             <EditableTextArea

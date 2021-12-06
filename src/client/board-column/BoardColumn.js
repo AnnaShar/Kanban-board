@@ -5,6 +5,8 @@ import {BoardAddTaskButton} from './BoardAddTaskButton.js';
 import {DraggableContainer} from '../drag-drop-components/DraggableContainer.js';
 import {DroppableContainer} from '../drag-drop-components/DroppableContainer.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
+import {ItemType, Direction} from '../constants/constants.js';
+
 import './BoardColumn.css';
 
 
@@ -25,7 +27,7 @@ export const BoardColumn = ({column, index}) => {
         <DraggableContainer
             draggableId={column.id}
             index={index}
-            type='column'
+            type={ItemType.Column}
             className={`board__board-column board-column ${column.isDeleting ? 'board-column--deleting' : ''}`}>
 
                 <BoardColumnHeader
@@ -35,8 +37,8 @@ export const BoardColumn = ({column, index}) => {
 
                 <DroppableContainer
                     droppableId={column.id}
-                    direction='vertical'
-                    type='task'
+                    direction={Direction.Vertical}
+                    type={ItemType.Task}
                     className='board_column__body'>
 
                     {columnBody}

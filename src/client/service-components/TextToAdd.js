@@ -3,6 +3,7 @@ import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {showErrorMessage} from '../utils/notifier.js';
 import {ToastContainer, Slide} from 'react-toastify';
 import useOnClickOutside from 'use-onclickoutside';
+import {Keys} from '../constants/constants.js';
 
 import './TextToAdd.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,7 +22,7 @@ export const TextToAdd = ({saveItem, itemTexts, showError = false, type}) => {
     };
 
     const keyPressedHandle = ({key}) => {
-        if (key === 'Enter' && text) {
+        if (key === Keys.Enter && text) {
             handleAdding();
         }
     }

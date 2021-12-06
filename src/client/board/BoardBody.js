@@ -5,6 +5,7 @@ import {BoardAddColumnButton} from './BoardAddColumnButton.js';
 import {DroppableContainer} from '../drag-drop-components/DroppableContainer.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
 import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import {ItemType, Direction, IDs} from '../constants/constants.js';
 
 import './BoardBody.css';
 
@@ -29,9 +30,9 @@ export const BoardBody = () => {
             <div className='board__columns-area'>
 
                 <DroppableContainer
-                    droppableId='board'
-                    direction='horizontal'
-                    type='column'
+                    droppableId={IDs.Board}
+                    direction={Direction.Horizontal}
+                    type={ItemType.Column}
                     className='board__columns'>
 
                     {boardBody}
