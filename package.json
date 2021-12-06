@@ -40,10 +40,9 @@
     "webpack-dev-server": "^4.3.1"
   },
   "scripts": {
-    "start": "node --experimental-json-modules src/server/server-requests-api.js",
-    "webpack-dev": "webpack-dev-server",
-    "webpack-build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-server": "node --experimental-json-modules src/server/server-requests-api.js",
+    "start-client-dev": "webpack-dev-server",
+    "client-build": "webpack"
   },
   "babel": {
     "presets": [
