@@ -1,17 +1,14 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {ErrorPage} from './error/ErrorPage.js';
-import {BoardProvider} from './board/BoardProvider.js';
+import {BoardContainer} from './board/BoardContainer.js';
 
 const App = () => {
     return (
         <Switch>
-            <Route exact path='/' component={BoardProvider}>
-            </Route>
+            <Route exact path='/' component={BoardContainer}/>
 
-            <Route path='/error' component={ErrorPage}>
-            </Route>
-
+            <Route path='/error' component={ErrorPage}/>
         </Switch>
     );
 }

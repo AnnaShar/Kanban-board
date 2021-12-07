@@ -5,7 +5,7 @@ import {Board} from './Board.js';
 import TrashCanStateProvider from '../context-store/trash-can-context.js';
 
 
-export const BoardProvider = () => {
+export const BoardContainer = () => {
     return (
         <UserSettingsProvider>
             <BoardDataProvider>

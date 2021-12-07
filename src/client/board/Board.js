@@ -17,9 +17,9 @@ export const Board = () => {
     }, []);
 
     const boardThemeColors = {
-        "--theme-color-base": theme.base,
-        "--theme-color-light": theme.light,
-        "--theme-color-dark": theme.dark
+        '--theme-color-base': theme.base,
+        '--theme-color-light': theme.light,
+        '--theme-color-dark': theme.dark
     }
 
     return (
@@ -27,6 +27,7 @@ export const Board = () => {
             {board &&
             <div className='board'
                  style={boardThemeColors}>
+                
                 <DragDropContextContainer
                     moveTask={moveTask}
                     deleteTask={deleteTask}
