@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export const TextToAdd = ({saveItem, itemTexts, showError = false, type}) => {
-    const {language, theme} = useContext(UserSettingsContext);
+    const {language} = useContext(UserSettingsContext);
 
     const [text, setText] = useState('');
     const [isAdding, setIsAdding] = useState(false);
@@ -70,15 +70,13 @@ export const TextToAdd = ({saveItem, itemTexts, showError = false, type}) => {
                         <div className={`add-item-form__button-area`}>
                             <button
                                 className={`add-item-form__button button-save`}
-                                onClick={handleAdding}
-                                style={{backgroundColor: theme.base}}>
+                                onClick={handleAdding}>
                                 {itemTexts.saveButton[language.value]}
                             </button>
 
                             <button
                                 className={`add-item-form__button button-cancel`}
-                                onClick={handleCancel}
-                                style={{color: theme.base}}>
+                                onClick={handleCancel}>
                                 {itemTexts.cancelButton[language.value]}
                             </button>
                         </div>

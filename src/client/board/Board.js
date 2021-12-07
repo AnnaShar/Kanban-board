@@ -16,15 +16,17 @@ export const Board = () => {
         await loadBoardData()
     }, []);
 
-    const boardStyles = {
-        background: 'linear-gradient(135deg,' + theme.base + ', transparent)'
+    const boardThemeColors = {
+        "--theme-color-base": theme.base,
+        "--theme-color-light": theme.light,
+        "--theme-color-dark": theme.dark
     }
 
     return (
         <>
             {board &&
             <div className='board'
-                 style={boardStyles}>
+                 style={boardThemeColors}>
                 <DragDropContextContainer
                     moveTask={moveTask}
                     deleteTask={deleteTask}

@@ -36,3 +36,6 @@
     right: 10px;
     cursor: pointer;
 }
+.settings-icon > svg{
+    fill: white;
+}

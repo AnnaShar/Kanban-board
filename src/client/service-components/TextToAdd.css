@@ -53,12 +53,15 @@
     border-radius: 2px;
     line-height: 1.8em;
     cursor: pointer;
+
 }
 .button-save {
+    background: var(--theme-color-base);
     color: white;
 }
 .button-cancel{
     background: white;
+    color: var(--theme-color-base);
 }
 
 input:focus{

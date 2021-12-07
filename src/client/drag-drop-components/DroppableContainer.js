@@ -5,7 +5,6 @@ import {Droppable} from 'react-beautiful-dnd';
 export const DroppableContainer = ({children, droppableId, direction, type, className}) => {
     return (
         <Droppable
-            style={{ transform: 'none' }}
             droppableId={droppableId}
             direction={direction}
             type={type}>

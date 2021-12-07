@@ -20,4 +20,5 @@ html,
     margin: auto;
     justify-content: flex-start;
     overflow: hidden;
+    background: linear-gradient(135deg, var(--theme-color-base), transparent);
 }

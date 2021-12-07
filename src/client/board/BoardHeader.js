@@ -32,8 +32,8 @@ export const BoardHeader = ({name}) => {
             <div className='board__settings-icon settings-icon'
                  id={IDs.SettingsButton}
                  onClick={handleSettingsClick}>
-                <SettingIcon
-                    fill='white'/>
+
+                <SettingIcon/>
             </div>
         </div>
     );

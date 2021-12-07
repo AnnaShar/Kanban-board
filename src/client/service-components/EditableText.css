@@ -13,6 +13,7 @@
     font-size: inherit;
     font-weight: inherit;
     color: inherit;
+    border-color: var(--theme-color-base);
 }
 
 .editable-text__input{
@@ -20,6 +21,7 @@
     font-size: inherit;
     font-weight: inherit;
     color: inherit;
+    border-color: var(--theme-color-base);
 }
 
 .editable-text__text:hover > .edit-task-button{
@@ -39,6 +41,16 @@
     border-radius: 3px;
     cursor: pointer;
     opacity: 0.6;
+    background: var(--theme-color-light)
+}
+.edit-task-button:hover{
+    background: var(--theme-color-base)
+}
+.edit-task-button > svg {
+    fill: #626161;
+}
+.edit-task-button:hover > svg {
+    fill: #ffffff;
 }
 .error-input{
     border-color: #ff6a6a !important;
