@@ -12,31 +12,8 @@ const handleRequest = async (handler) => {
     }
 };
 
-const getAllTasks = async () => {
-    return handleRequest(async () => {
-        return await fetch(`${url}/tasks`);
-    });
-};
 
 const getBoard = async () => {
-    return handleRequest(async () => {
-        return await fetch(`${url}`);
-    });
-};
-
-const getColumns = async () => {
-    return handleRequest(async () => {
-        return await fetch(`${url}/columns`);
-    });
-};
-
-const getTasksByColumn = async (columnID) => {
-    return handleRequest(async () => {
-        return await fetch(`${url}/columns/${columnID}`);
-    });
-};
-
-const getBoardInfo = async () => {
     return handleRequest(async () => {
         return await fetch(`${url}`);
     });
@@ -123,10 +100,6 @@ const changeTaskName = async (taskID, taskName) => {
 
 export default {
     getBoard,
-    getAllTasks,
-    getColumns,
-    getTasksByColumn,
-    getBoardInfo,
     moveTask,
     addTask,
     deleteTask,
