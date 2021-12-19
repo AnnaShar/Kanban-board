@@ -3,7 +3,7 @@ export default {
         name: 'pink',
         base: '#cea4a4',
         light: '#e7d2d2',
-        dark: '#cea4a4'
+        dark: '#945d5d'
     },
     '#7c8feb': {
         name: 'violet',

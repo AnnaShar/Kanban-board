@@ -2,11 +2,14 @@ import React, {useContext} from 'react';
 import {DragDropContext} from 'react-beautiful-dnd';
 import {TrashCanContext} from '../context-store/trash-can-context.js';
 import {BoardStoreContext} from '../context-store/board-store-context.js';
+import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import {ItemType, IDs} from '../constants/constants.js';
+import texts from '../constants/texts.js';
 
 export const DragDropContextContainer = ({children, moveTask, deleteTask, moveColumn, deleteColumn}) => {
     const {showTrashCan, hideTrashCan, setDeletingType} = useContext(TrashCanContext);
     const {setDeletingStateTask, setDeletingStateColumn} = useContext(BoardStoreContext);
+    const {language} = useContext(UserSettingsContext);
 
     const onDragStart = ({type}) => {
         showTrashCan();
@@ -65,8 +68,8 @@ export const DragDropContextContainer = ({children, moveTask, deleteTask, moveCo
 
     const dropColumn = (draggableId, source, destination) => {
         if (destination.droppableId === IDs.TrashCanColumn) {
-            //TODO ask before delete
             deleteColumn(draggableId);
+
         } else {
             moveColumn(draggableId, source.index, destination.index);
         }
