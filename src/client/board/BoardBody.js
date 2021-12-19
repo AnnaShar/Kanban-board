@@ -1,58 +1,49 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {BoardColumn} from '../board-column/BoardColumn.js';
-import {DragDropContext} from 'react-beautiful-dnd';
-import serverRequest from '../server-requests.js';
 import {BoardSettings} from '../board-settings/BoardSettings.js';
-import {BoardStoreContext} from '../context-store/board-store-context.js';
-import './BoardBody.css';
 import {BoardAddColumnButton} from './BoardAddColumnButton.js';
+import {DroppableContainer} from '../drag-drop-components/DroppableContainer.js';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
+import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import {ItemType, Direction, IDs} from '../constants/constants.js';
+
+import './BoardBody.css';
 
 
-export const BoardBody = (props) => {
-    const {board, addColumn} = useContext(BoardStoreContext);
+export const BoardBody = () => {
+    const {board} = useContext(BoardStoreContext);
+    const {isSettingsMenuOpen} = useContext(UserSettingsContext);
 
     const columns = board.columnsOrder;
 
-    const boardBody = columns.map(columnID => {
+    const boardBody = columns.map((columnID, index) => {
         const column = board.columns[columnID];
         return (<BoardColumn
             key={column.id}
-            id={column.id}
-            name={column.name}
+            column={column}
+            index={index}
         />);
     });
 
-    const addNewColumn = (columnName) => {
-        addColumn('Untitled');
-    }
-
-    const onDragEnd = async (result) => {
-        const {destination, source, draggableId} = result;
-        if (!destination) {
-            return;
-        }
-        if (destination.droppableId === source.droppableId
-            && destination.index === source.index) {
-            return;
-        }
-        const destinationInfo = {
-            index: destination.index,
-            columnID: destination.droppableId
-        }
-        const newColumns = await serverRequest.moveTask(draggableId, destinationInfo);
-        //setColumns(newColumns);
-    }
-
     return (
         <div className='board__body'>
-            <div className='board__columns'>
-                <DragDropContext
-                    onDragEnd={onDragEnd}>
+            <div className='board__columns-area'>
+
+                <DroppableContainer
+                    droppableId={IDs.Board}
+                    direction={Direction.Horizontal}
+                    type={ItemType.Column}
+                    className='board__columns'>
+
                     {boardBody}
-                    <BoardAddColumnButton/>
-                </DragDropContext>
+
+                </DroppableContainer>
+
+                <BoardAddColumnButton/>
+
             </div>
-            {props.settingsIsOpen && <BoardSettings/>}
+
+            {isSettingsMenuOpen && <BoardSettings/>}
         </div>
     );
 }

@@ -1,43 +1,25 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useContext} from 'react';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
+import {EditableText} from '../service-components/EditableText.js';
+
 import './BoardColumnHeader.css';
-import {ReactComponent as ReactLogo} from '../images/edit_icon.svg';
 
-export const BoardColumnHeader = (props) => {
-    const [editable, setEditable] = useState(false);
-    const [focused, setFocus] = useState(false);
-    const headerText = useRef(null);
 
-    const handleEditClick = (e) => {
-        setEditable(true);
-        headerText.current.focus();
-    }
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            setEditable(false);
-        }
-    }
-    const handleBlur = (e) => {
-        setEditable(false);
+export const BoardColumnHeader = ({id, name}) => {
+    const {changeColumnName} = useContext(BoardStoreContext);
+
+    const editName = (text) => {
+        changeColumnName(id, text);
     }
 
     return (
-        <>
-            <div
-                ref={headerText}
-                tabIndex={0}
-                onKeyDown={handleKeyDown}
-                onBlur={handleBlur}
-                contentEditable={editable}
-                className="board-column__header">
-                {props.name}
-                <div className="board__edit-icon edit-icon">
-                    {/*<ReactLogo*/}
-                    {/*    onClick={handleEditClick}*/}
-                    {/*/>*/}
-                </div>
-            </div>
+        <div className='board-column__header column-header'>
 
-
-        </>
+            <EditableText
+                className='column-header'
+                value={name}
+                saveChanges={editName}
+            />
+        </div>
     );
 }

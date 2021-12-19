@@ -1,26 +1,31 @@
-import React, {useContext} from 'react';
-import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import React, {useContext, useRef} from 'react';
 import {CirclePicker} from 'react-color';
-import Select, { StylesConfig } from 'react-select'
+import Select from 'react-select';
+import useOnClickOutside from 'use-onclickoutside';
+import {UserSettingsContext} from '../context-store/user-settings-context.js';
 import themes from '../constants/themes.js';
 import languages from '../constants/languages.js';
 import texts from '../constants/texts.js';
 import './BoardSettings.css';
 
+
 export const BoardSettings = () => {
-    const {theme, setTheme, language, setLanguage} = useContext(UserSettingsContext);
+    const {theme, saveTheme, language, saveLanguage, closeSettings} = useContext(UserSettingsContext);
+    const closingRef = useRef();
+    useOnClickOutside(closingRef, closeSettings);
 
     const handleColorChange = (color) => {
-        console.log(color.hex);
-        setTheme(themes[color.hex]);
-        console.log(themes[color.hex]);
+        saveTheme(themes[color.hex]);
     }
     const handleLanguageChange = (language) => {
-        setLanguage(languages[language.value]);
+        saveLanguage(languages[language.value]);
     }
 
     return (
-        <div className='board__settings'>
+        <div
+            ref={closingRef}
+            className='board__settings'>
+
             <h2>{texts.settings.header[language.value]}</h2>
             <div className='setting-item theme-settings'>
                 <div className='setting-item__header'>
@@ -41,7 +46,7 @@ export const BoardSettings = () => {
                 </div>
                 <div className='setting-item__body'>
                     <Select
-                        defaultValue = {language}
+                        defaultValue={language}
                         options={Object.values(languages)}
                         onChange={handleLanguageChange}
                         theme={(themeSelect) => ({

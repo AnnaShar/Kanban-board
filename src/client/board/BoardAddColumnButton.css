@@ -1,73 +1,27 @@
-.board__add-column {
+.add-column-container {
     width: 250px;
-    padding: 11px;
+    min-width: 250px;
+    height: fit-content;
+    margin: 1px 10px;
     background: transparent;
     border: 2px solid #fdfdfd;
+    border-radius: 3px;
     color: #fdfdfd;
     box-shadow: 0 1px 5px #fdfdfd;
 }
 
-.board__add-column.isAdding {
-    background: #efefef;
-    border: none;
+.add-column-container--adding {
+    padding: 15px 11px;
+    background: #ebecf0;
     box-shadow: none;
+    border: none;
 }
 
-.board__add-column-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
+.add-column-button {
+    height: 45px;
     font-weight: 600;
 }
 
-.add-column-form {
-    width: 100%;
-}
-
-.board-column__button-add {
-
-    cursor: pointer;
-}
-
 .add-column-form__input {
-    line-height: 2em;
-    width: 100%;
-    border-radius: 3px;
-    border: none;
-    box-sizing: border-box;
-    padding: 5px;
-    font-family: "Montserrat", sans-serif;
-    background: #fdfdfd;
-}
-
-.add-column-form__input:focus {
-    box-shadow: 0 3px 10px lightgrey;
-}
-
-.add-column-form__button-area {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    padding: 10px 0 0 0;
-}
-
-.add-column-form__button {
-    outline: none;
-    border: none;
-    width: 48%;
-    border-radius: 2px;
-    line-height: 1.8em;
-    cursor: pointer;
-}
-
-.button-save {
-    color: white;
-}
-
-.button-cancel {
-    background: white;
+    line-height: 2.3em;
 }

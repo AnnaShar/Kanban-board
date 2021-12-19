@@ -7,8 +7,8 @@
     width: 300px;
     min-width: 200px;
     height: fit-content;
-    max-height: -webkit-fill-available;
-    margin: 10px;
+    max-height: 100%;
+    margin: 0 10px;
     border-radius: 3px;
     background: #ebecf0;
     color: #505050;
@@ -28,5 +28,10 @@
 }
 .board-column__item{
     width: 100%;
-    margin: 0 5px 10px 5px;
+    margin-bottom: 10px;
+}
+
+.board-column--deleting{
+    background: #d2537a;
+    color: white;
 }

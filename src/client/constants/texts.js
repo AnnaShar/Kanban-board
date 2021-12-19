@@ -7,10 +7,21 @@ export default {
         button: {
             eng: 'Add task',
             ru: 'Добавить задачу'
+        },
+        saveButton:{
+            eng: 'Save',
+            ru: 'Сохранить'
+        },
+        cancelButton: {
+            eng: 'Cancel',
+            ru: 'Отмена'
+        },
+        error: {
+            eng: 'Enter name of the task',
+            ru: 'Имя задачи не может быть пустым'
         }
-
     },
-    addColumnText: {
+    addColumn: {
         button: {
             eng: 'Add column',
             ru: 'Добавить колонку'
@@ -26,6 +37,10 @@ export default {
         cancelButton: {
             eng: 'Cancel',
             ru: 'Отмена'
+        },
+        error: {
+            eng: 'Enter name of the column',
+            ru: 'Имя колонки не может быть пустым'
         }
     },
     settings: {
@@ -40,6 +55,16 @@ export default {
         chooseLanguage: {
             eng: 'Choose language',
             ru: 'Выберите язык интерфейса'
+        }
+    },
+    errorMessages: {
+        default: {
+            eng: 'Something went wrong. Please, try again.',
+            ru: 'Что-то пошло не так. Пожалуйста, попробуйте снова.'
+        },
+        addColumn: {
+            eng: '',
+            ru: ''
         }
     }
 }

@@ -1,53 +1,24 @@
-import React, {useState, useRef, useContext} from 'react';
-import {UserSettingsContext} from '../context-store/user-settings-context.js';
+import React, {useContext} from 'react';
+import {BoardStoreContext} from '../context-store/board-store-context.js';
+import {TextToAdd} from '../service-components/TextToAdd.js';
 import texts from '../constants/texts.js';
+import {ItemType} from '../constants/constants.js';
 import './BoardAddTaskButton.css';
 
 
-export const BoardAddTaskButton = ({addTask}) => {
-    const [taskName, setTaskName] = useState('');
-    const [isAdding, setIsAdding] = useState(false);
-    const addInput = useRef(null);
-    const {language} = useContext(UserSettingsContext);
+export const BoardAddTaskButton = ({columnID}) => {
+    const {addTask} = useContext(BoardStoreContext);
 
-    const handleAddClick = () => {
-        // if(!isAdding && addInput){
-        //     addInput.current.focus();
-        // }
-        setIsAdding(!isAdding);
-    };
-
-    const updateTaskName = ({target}) => {
-        setTaskName(target.value);
-    };
-
-    const keyPressedHandle = async ({key}) => {
-        if (key === 'Enter' && taskName) {
-            await addTask(taskName);
-            setTaskName('');
-            setIsAdding(false);
-        }
+    const handleAdding = (taskName) => {
+        addTask({name: taskName}, columnID);
     }
 
-    return (<>
-            <div
-                className='board-column__item board-column__button-add'
-                onClick={handleAddClick}>
-                + {texts.addTask.button[language.value]}
-            </div>
-
-            {isAdding &&
-            <div className='add-task-form'>
-                <input
-                    ref = {addInput}
-                    className='add-task-form__input'
-                    placeholder={texts.addTask.placeholder[language.value]}
-                    type='text'
-                    value={taskName}
-                    onChange={updateTaskName}
-                    onKeyPress={keyPressedHandle}
-                />
-            </div>}
-        </>
+    return (
+        <TextToAdd
+            saveItem={handleAdding}
+            itemTexts={texts.addTask}
+            showError={false}
+            type={ItemType.Task}
+        />
     );
 }

@@ -1,11 +1,9 @@
 import express from 'express'
 import bodyParser from "body-parser";
-import boardController from './board-controller.js';
+import boardController from './server-board-controller.js';
 import cors from 'cors';
 
 const port = 8080;
-
-
 
 const app = new express();
 app.use(cors());
@@ -58,12 +56,28 @@ app.get('/api/board', (req, res)=>{
     });
 });
 
+app.patch('/api/board/edit', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    handleResponse(req, res, () => {
+        return boardController.changeBoardName(req.body);
+    });
+});
+
 app.patch('/api/board/tasks/move/:uid', (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
     let id = req.params.uid;
     handleResponse(req, res, () => {
-        return boardController.moveTaskToDifferentColumn(id, req.body);
+        return boardController.moveTask(id, req.body);
+    });
+});
+
+app.delete('/api/board/tasks/delete', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    handleResponse(req, res, () => {
+        return boardController.deleteTask(req.body);
     });
 });
 
@@ -73,6 +87,50 @@ app.post('/api/board/tasks/add/:uid', (req, res) => {
     let id = req.params.uid;
     handleResponse(req, res, () => {
         return boardController.addTask(id, req.body);
+    });
+});
+
+app.patch('/api/board/tasks/edit/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.changeTaskName(id, req.body);
+    });
+});
+
+app.post('/api/board/columns/add', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    handleResponse(req, res, () => {
+        return boardController.addColumn(req.body);
+    });
+});
+
+app.patch('/api/board/columns/move/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.moveColumn(id, req.body);
+    });
+});
+
+app.patch('/api/board/columns/edit/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.changeColumnName(id, req.body);
+    });
+});
+
+app.delete('/api/board/columns/delete/:uid', (req, res) => {
+    if (!req.body) return res.sendStatus(400);
+
+    let id = req.params.uid;
+    handleResponse(req, res, () => {
+        return boardController.deleteColumn(id);
     });
 });
 
