@@ -34,6 +34,7 @@
     font-family: "Montserrat", sans-serif;
     background: #fdfdfd;
     text-align: center;
+    font-size: 0.9em;
 }
 .add-item-form__input:focus {
     box-shadow: 0 3px 10px lightgrey;
